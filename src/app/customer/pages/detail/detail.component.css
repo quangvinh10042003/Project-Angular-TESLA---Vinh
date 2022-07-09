@@ -1,0 +1,227 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main {
+    padding-top: 100px;
+}
+
+.leftMain {
+    margin-top: 100px;
+}
+
+.Box {
+    width: 100%;
+}
+
+.boxImg {
+    width: 100%;
+    margin: auto;
+}
+
+.font-weight-600 {
+    font-weight: 600;
+}
+
+.numberData {
+    font-size: 28px;
+}
+
+.borderChose {
+    border: 2px solid black !important;
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.436);
+}
+
+.paint {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.butToCart {
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px;
+    width: 230px;
+}
+
+.wheel {
+    width: 80%;
+    margin: auto;
+}
+
+.buyBox {
+    background-color: #e0e0e079;
+    width: 50px;
+    padding: 10px;
+    height: 70px;
+    border-radius: 0px 50px 50px 0px;
+    position: fixed;
+    z-index: 888;
+    left: 1px;
+    top: 100px;
+    cursor: pointer;
+}
+
+.imgSlide {
+    max-width: 1500px;
+    max-height: 600px;
+}
+
+.chatBox {
+    margin-top: 70px;
+}
+
+.callBox {
+    margin-top: 140px;
+}
+
+.buyBox:hover {
+    background-color: rgb(244, 244, 244);
+    box-shadow: 0px 0px 2px 1px rgba(78, 78, 78, 0.37);
+    width: 318px;
+    transition: 1000ms;
+}
+
+.buyBox:hover .butBuy {
+    background-color: white;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.166);
+    transition: 2000ms;
+}
+
+.buyBox:hover .rightButBuy {
+    opacity: 1;
+    transition: 4000ms;
+}
+
+.butBuy {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    margin: auto;
+}
+
+.butBuy span {
+    display: inline-block;
+    text-align: center;
+    line-height: 40px;
+    color: rgb(35, 35, 35);
+    margin-left: 9px;
+}
+
+.rightButBuy {
+    opacity: 0;
+}
+
+.h6span {
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    p {
+        font-size: 13px;
+    }
+    .boxImg {
+        width: 100%;
+        margin: auto;
+    }
+    .main {
+        padding-top: 0px;
+    }
+    .fixedBuy {
+        font-size: 15px;
+    }
+    .buyBox {
+        width: 40px;
+        padding: 10px;
+        height: 50px;
+        left: 1px;
+        top: 100px;
+    }
+    .chatBox {
+        margin-top: 55px;
+    }
+    .callBox {
+        margin-top: 110px;
+    }
+    .butBuy {
+        font-size: 16px;
+        width: 40px;
+        height: 40px;
+        margin-top: -9px;
+    }
+    .butBuy span {
+        color: rgb(35, 35, 35);
+        margin-left: 9px;
+    }
+    .rightButBuy {
+        margin-top: -8px;
+    }
+    .h6span {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    p {
+        font-size: 12px;
+    }
+    .wheel,
+    .autoPilot {
+        padding-top: 20px;
+    }
+    h1 {
+        font-size: 30px;
+    }
+    h5 {
+        font-size: 16px;
+    }
+    h3 {
+        font-size: 24px;
+    }
+    .numberData {
+        font-size: 20px;
+    }
+    .buyBox:hover {
+        border-radius: 0;
+    }
+    .buyBox {
+        top: 60px;
+        width: 30px;
+        padding: 10px;
+        height: 35px;
+        left: 1px;
+    }
+    .chatBox {
+        margin-top: 45px;
+    }
+    .callBox {
+        margin-top: 90px;
+    }
+    .butBuy {
+        font-size: 14px;
+        width: 25px;
+        height: 25px;
+        margin-top: -10px;
+    }
+    .butBuy span {
+        color: rgb(35, 35, 35);
+        margin-left: 5px;
+        margin-top: -6px;
+    }
+    .rightButBuy {
+        margin-top: -8px;
+    }
+    .h6span {
+        margin-top: -5px;
+    }
+    .fixedBuy {
+        font-size: 12px;
+    }
+}

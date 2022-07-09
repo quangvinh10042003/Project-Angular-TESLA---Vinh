@@ -1,0 +1,78 @@
+<div class="addItem  mt-5 mb-3" routerLink="addnew">
+    <i class="fa-solid fa-plus"></i><span>Add New Product</span>
+</div>
+<div class="boxFillterProduct">
+    <div class="row  mb-1 ">
+        <div class="col-lg-3 col-md-4">
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle butDrop" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Categories
+                        </button>
+                <div class="dropdown-menu dropMenuBox" aria-labelledby="triggerId">
+                    <a class="dropdown-item dropCategory" routerLink="/admin">All Products</a>
+                    <a class="dropdown-item dropCategory" (click)="searchByCategory(item.id)" *ngFor="let item of categoryList">{{item.name}}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8">
+            <div class="boxSearchMobile">
+                <input class="inputSearchMobile" type="text" placeholder="Search" [(ngModel)]="keyword">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span class="ml-2 mr-2 searchSpan">Search</span>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th class="text-center thLineHeight" rowspan="2">Order</th>
+            <th class="text-center thLineHeight" rowspan="2">Name</th>
+            <th class="text-center thLineHeight" rowspan="2">Category Id</th>
+            <th class="text-center thLineHeight" rowspan="2">Price</th>
+            <th class="text-center thLineHeight" rowspan="2">Image</th>
+            <th class="text-center" colspan="4">Display</th>
+            <th class="text-center" colspan="3">Setting</th>
+        </tr>
+        <tr>
+            <th class="text-center ">Home</th>
+            <th class="text-center ">Banner</th>
+            <th class="text-center ">Best Seller</th>
+            <th class="text-center ">Stock</th>
+            <th class="text-center ">Detail</th>
+            <th class="text-center ">Update</th>
+            <th class="text-center ">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of allProduct | search:keyword, let i = index">
+            <td class="text-center pl-3 pr-3 thLineHeight" scope="row">{{i+1}}</td>
+            <td class="text-center pl-3 pr-3 thLineHeight">{{item.name}}</td>
+            <td class="text-center pl-3 pr-3 thLineHeight">{{item.category_id}}</td>
+            <td class="text-center pl-3 pr-3 thLineHeight">$ {{item.price}}</td>
+            <td class="text-center pl-3 pr-3 thLineHeight"><img src="{{item.imgProduct}}" width="100px" alt=""></td>
+            <td class="text-center pl-3 pr-3 thLineHeight">
+                <input type="checkbox" class="checkboxDisplay" [checked]="item.inHome" [(ngModel)]="item.inHome" (change)="changeStatus(item.category_id, item.id)">
+            </td>
+            <td class="text-center pl-3 pr-3 thLineHeight">
+                <input type="checkbox" class="checkboxDisplay" [checked]="item.inBanner" [(ngModel)]="item.inBanner" (change)="changeStatus(item.category_id, item.id)">
+            </td>
+            <td class="text-center pl-3 pr-3 thLineHeight">
+                <input type="checkbox" class="checkboxDisplay" [checked]="item.inTopSeller" [(ngModel)]="item.inTopSeller" (change)="changeStatus(item.category_id, item.id)">
+            </td>
+            <td class="text-center pl-3 pr-3 thLineHeight">
+                <input type="checkbox" class="checkboxDisplay" [checked]="item.inStock" [(ngModel)]="item.inStock" (change)="changeStatus(item.category_id, item.id)">
+            </td>
+            <td class="text-center pl-3 pr-3 thLineHeight">
+                <span class="detailSpan" (click)="viewDetail(item.category_id, item.id)">View Detail</span>
+            </td>
+            <td class="text-center pl-3 pr-3 thLineHeight">
+                <i class="fa-solid fa-pen-to-square iconEdit" (click)="editItem(item.category_id, item.id)"></i>
+            </td>
+            <td class="text-center pl-3 pr-3 thLineHeight">
+                <i class="fa-solid fa-trash iconDelete" (click)="deleteItem( item.category_id, item.id)"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>

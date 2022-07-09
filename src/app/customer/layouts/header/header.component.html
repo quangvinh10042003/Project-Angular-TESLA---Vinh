@@ -1,0 +1,71 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<div class="header" id="header">
+    <div class="row flexBox">
+        <div class="col-lg-3 col-md-3 col-5">
+            <div class="row align-items-center">
+                <div class="logo" routerLink="/">
+                    <img class="card-img" src="https://www.freepnglogos.com/uploads/tesla-logo-png-20.png" alt="">
+                </div>
+                <div class="shop" routerLink="/allshop">
+                    Shop
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-1 col-1">
+            <ul>
+                <li><a class="listNAV" routerLink="/allshop">Shop</a></li>
+                <li><a class="listNAV" routerLink="/delivery">Delivery</a></li>
+                <li><a class="listNAV" routerLink="/teslaAbout">About</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-3 col-md-8 col-5 mobileRightHeader">
+            <div class="row float-right">
+                <div class="cart fontWeight500">
+                    Cart
+                </div>
+                <div class="ml-3 accout fontWeight500" routerLink="account" id="accountDiv" *ngIf="checkStr; else elseBlock">
+                    Account
+                </div>
+                <ng-template #elseBlock>
+                    <div class="ml-3 accout signIn fontWeight500" routerLink="signin" id="accountDiv">
+                        Login
+                    </div>
+                </ng-template>
+                <div class="ml-3 menuMobile fontWeight500" id="but" (click)="openMenuMobile()">
+                    Menu
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="position-fixed d-none modalMobile" id="modalMobile">
+        <div class="listMobile position-relative">
+            <div id="closeMobileMenu" (click)="closeMenuMobile()"><i class="fa-solid fa-x"></i></div>
+            <div class="accountAndCart">
+                <div class="row">
+                    <div class="cartMobile">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div class="ml-3 accoutMobile" routerLink="account" *ngIf="checkStr; else elseBlock1">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <ng-template #elseBlock1>
+                        <div class="ml-3 accoutMobile" routerLink="signin">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </ng-template>
+                </div>
+
+            </div>
+            <div class="list-group listMenu">
+                <a href="#" class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/">Home</a>
+                <a href="#" class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/allshop">Shop</a>
+                <a href="#" class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/delivery">Delivery</a>
+                <a href="#" class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/teslaAbout">About</a>
+            </div>
+        </div>
+    </div>
+
+</div>

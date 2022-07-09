@@ -1,0 +1,19 @@
+.delivery {
+    width: 100%;
+}
+
+h2:first-child {
+    padding-top: 80px;
+}
+
+.boxImg {
+    width: 730px;
+    margin: 20px auto;
+}
+
+@media screen and (max-width:320px) {
+    .boxImg {
+        width: 300px;
+        margin: 20px auto;
+    }
+}

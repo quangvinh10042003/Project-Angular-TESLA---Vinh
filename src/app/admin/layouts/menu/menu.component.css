@@ -1,0 +1,13 @@
+div {
+    width: 220px;
+}
+
+.boxImg {
+    width: 150px;
+    margin: auto;
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+}

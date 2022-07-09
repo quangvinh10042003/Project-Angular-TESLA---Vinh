@@ -1,0 +1,116 @@
+label {
+    width: 60px;
+}
+
+.boxCategory {
+    padding: 15px;
+    margin-bottom: 30px;
+    border: 1px solid rgb(222, 222, 222);
+    background-color: rgb(245, 245, 245);
+}
+
+input {
+    border: 0;
+    border: 1px solid rgb(187, 187, 187);
+    padding: 3px 15px;
+    width: 130px;
+}
+
+.boxButton {
+    margin-left: -40px;
+}
+
+button {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 100px;
+}
+
+button:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+button:first-child {
+    color: rgb(34, 188, 3);
+}
+
+button:last-child {
+    color: red;
+}
+
+.butSave {
+    width: 100px;
+    color: blue !important;
+    background-color: white !important;
+    border: 1px solid blue;
+    border-radius: 0;
+}
+
+.butSave:hover {
+    border-radius: 0;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.163);
+}
+
+.butCancel {
+    width: 100px;
+    color: red !important;
+    background-color: white !important;
+    border: 1px solid red;
+    border-radius: 0;
+}
+
+.butCancel:hover {
+    border-radius: 0;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.163);
+}
+
+.addItem {
+    display: inline-block;
+    background-color: rgb(33, 33, 33);
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.addItem:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 1px 1px black;
+}
+
+.addItem:hover i {
+    color: #000;
+}
+
+.addItem i {
+    color: white;
+    padding-right: 10px;
+    font-size: 20px;
+}
+
+#inputIdAdd,
+#inputNameAdd {
+    width: 200px;
+}
+
+.addBox {
+    width: 320px;
+}
+
+@media screen and (max-width:768px) {
+    label {
+        font-size: 12px;
+        width: 40px;
+    }
+    input {
+        font-size: 12px;
+        width: 100px;
+    }
+    .boxButton {
+        margin-left: -20px;
+    }
+}

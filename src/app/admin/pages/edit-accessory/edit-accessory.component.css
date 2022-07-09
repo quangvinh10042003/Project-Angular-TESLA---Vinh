@@ -1,0 +1,119 @@
+.spanType {
+    display: block;
+    font-size: 20px;
+    padding: 20px 20px;
+    background-color: rgb(236, 236, 235);
+    margin-right: 20px;
+    border: 1px solid rgb(213, 213, 213);
+    cursor: pointer;
+}
+
+.activeSpan {
+    background-color: #fff;
+    border: 1px solid rgb(110, 110, 110);
+}
+
+form {
+    padding-top: 40px;
+}
+
+label {
+    width: 100%;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formInput {
+    width: 80%;
+    padding: 7px 20px;
+    font-size: 16px;
+    border: none;
+    border: 1px solid rgb(214, 214, 214);
+}
+
+.productImg {
+    width: 72%;
+}
+
+.sizeImg {
+    padding-top: 32px;
+    width: 100%;
+    max-width: 350px;
+}
+
+.checkbox {
+    width: 25px;
+    height: 25px;
+    margin-left: 40px;
+}
+
+.spanCheckbox {
+    margin-top: -0px;
+    margin-left: 7px;
+    font-size: 16px;
+}
+
+.formcheckbox {
+    margin-left: -24px;
+}
+
+.butSubmit {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding: 7px 100px;
+    font-size: 24px;
+    border-radius: 0px;
+}
+
+.boxQuantity {
+    width: 200px;
+}
+
+.boxQuantity input {
+    text-align: center;
+    width: 50px;
+}
+
+.butEnterQuantity {
+    right: 0px;
+    border: none;
+    padding: 2px 10px;
+    border: 1px solid black;
+    background: #000;
+    color: white;
+}
+
+.quantityInp {
+    border: none;
+    text-align: center;
+    width: 50px;
+    padding: 3px;
+    font-size: 20px;
+}
+
+.infoCategory {
+    margin-top: -5px;
+    font-size: 20px;
+}
+
+.infoCategory:hover .boxInfo {
+    display: block;
+}
+
+.boxInfo {
+    position: absolute;
+    padding: 10px;
+    background-color: #fff;
+    color: #000;
+    width: 250px;
+    border: 1px solid black;
+    z-index: 888;
+    font-size: 15px;
+    left: -134px;
+    display: none;
+}

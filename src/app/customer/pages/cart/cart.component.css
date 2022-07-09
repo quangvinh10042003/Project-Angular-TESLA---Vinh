@@ -1,0 +1,47 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    padding-top: 100px;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(57, 57, 57);
+    margin-bottom: 0;
+}
+
+span {
+    font-size: 18px;
+    color: rgb(89, 89, 89);
+}
+
+.paint {
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+}
+
+.remove {
+    margin-top: 35px;
+    font-size: 18px;
+    text-decoration: underline;
+    color: rgb(89, 89, 89);
+    cursor: pointer;
+}
+
+img {
+    width: 100%;
+}
+
+.price {
+    font-size: 18px;
+    color: rgb(89, 89, 89);
+}
+
+.cardItem {
+    padding: 20px;
+    background: rgb(241, 241, 241);
+}

@@ -1,0 +1,10 @@
+<div *ngFor="let item of listVehical" class="jumbotron contentPro" style="background-image: url( {{item.imgProduct}} );">
+    <h1 class="text-center">{{item.name}}</h1>
+    <p class="lead text-center leadLink">Order Online for <span class="link" routerLink="/delivery">Touchless Delivery</span></p>
+    <p class="lead text-center mt-2">
+        <a class="btn btn-dark btn-lg butBuy text-light" role="button" routerLink="detail/{{item.id}}" *ngIf="item.category_id == 1; else elseButton">View Detail</a>
+        <ng-template #elseButton>
+            <a class="btn btn-dark btn-lg butBuy text-light" routerLink="detailAccessory/{{item.id}}" role="button">View Detail</a>
+        </ng-template>
+    </p>
+</div>

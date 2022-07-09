@@ -1,0 +1,15 @@
+.main {
+    padding-top: 100px;
+}
+
+.boxImg {
+    width: 730px;
+    margin: 20px auto;
+}
+
+@media screen and (max-width:320px) {
+    .boxImg {
+        width: 300px;
+        margin: 20px auto;
+    }
+}

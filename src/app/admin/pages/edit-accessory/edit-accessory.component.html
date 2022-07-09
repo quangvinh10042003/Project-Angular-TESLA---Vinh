@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <div class="type mt-5 ml-5">
+        <h2>Edit Accessory</h2>
+        <div class="row ml-0 mt-5">
+            <div class="spanType activeSpan">Accessory</div>
+        </div>
+        <form [formGroup]="formGroup" (ngSubmit)="submitProduct()">
+            <h4 class="mb-4">Infomation Accessory</h4>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="formGroup">
+                        <label for="">Name</label>
+                        <input type="text" formControlName="name" class="formInput" placeholder="Please enter a name">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="formGroup">
+                        <div class="row align-items-center">
+                            <div class="col-5">
+                                <label for="">Category Id</label>
+                            </div>
+                            <div class="ml-2 text-primary infoCategory position-relative">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <div class="boxInfo">
+                                    <ul>
+                                        <li *ngFor="let item of categoryList">{{item.category_id}}: {{item.name}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" formControlName="category_id" class="formInput" placeholder="Please enter category id">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="formGroup">
+                        <label for="">Price</label>
+                        <input type="text" formControlName="price" class="formInput" placeholder="Please enter a price">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="formGroup">
+                        <label for="">Image Product</label>
+                        <input type="text" formControlName="imgProduct" class="formInput" placeholder="Please enter a price">
+                    </div>
+                    <div class="formGroup">
+                        <label for="">Description</label>
+                        <textarea cols="30" formControlName="description" class="formInput" rows="8" placeholder="Please enter a description"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="productImg">
+                        <img class="card-img sizeImg" src="{{form.imgProduct.value}}">
+                    </div>
+                </div>
+                <div class="col-lg-12 mb-4"></div>
+                <div class="col-lg-12">
+                    <h4 class="mb-3">Quantity of slide item</h4>
+                    <div class="boxQuantity mb-4">
+                        <input type="text" value="{{quantitySlide}}" [(ngModel)]="quantitySlide" [ngModelOptions]="{standalone: true}">
+                        <button type="button" class="butEnterQuantity" (click)="enterSlider()">Enter</button>
+                    </div>
+                </div>
+                <div class="col-lg-4" *ngFor="let item of allImg, let i = index">
+                    <div class="formGroup">
+                        <label for="">Slide {{i+1}}</label>
+                        <input type="text" class="formInput" placeholder="Please enter a link image of slide" [(ngModel)]="item.img" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div style="width: 80%">
+                        <img class="card-img" src="{{item.img}}">
+                    </div>
+                </div>
+                <div class="col-lg-12 mt-4 d-none" id="setSlide">
+                    <a class="btn btn-dark text-light" role="button" (click)="setSlide()">Set Slide</a>
+                </div>
+                <div class="col-lg-12 mt-4">
+                    <h4>Display</h4>
+                    <div class="formGroup formcheckbox mt-4">
+                        <div class="row align-items-center">
+                            <input class="checkbox" formControlName="inHome" type="checkbox"><span class="spanCheckbox">Home</span>
+                            <input class="checkbox" formControlName="inBanner" type="checkbox"><span class="spanCheckbox">Banner</span>
+                            <input class="checkbox" formControlName="inTopSeller" type="checkbox"><span class="spanCheckbox">Best Seller</span>
+                            <input class="checkbox" formControlName="inStock" type="checkbox"><span class="spanCheckbox">Stock</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary butSubmit" btn-lg btn-block>Submit</button>
+        </form>
+    </div>
+</div>

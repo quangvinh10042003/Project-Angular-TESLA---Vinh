@@ -1,0 +1,122 @@
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 leftMain">
+            <owl-carousel-o [options]="OptionsSlider">
+                <ng-container *ngFor="let slide of sliderImg">
+                    <ng-template class="" carouselSlide id="{{slide.id}}">
+                        <div class="Box">
+                            <div class="boxImg">
+                                <img class="card-img imgSlide" src="{{slide.img}}">
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+            </owl-carousel-o>
+        </div>
+        <div class="col-lg-3 mt-1 rightMain">
+            <h1 class="text-center font-weight-bold">{{dataVehical.name}}</h1>
+            <h5 class="text-center">Est. Delivery: Sep - Dec 2022</h5>
+            <h5 class="text-center">$ {{dataVehical.price}}</h5>
+            <div class="row mt-4">
+                <div class="col-4 text-center">
+                    <span class="numberData font-weight-600">{{dataVehical.range}}</span><span>mi</span>
+                    <p class="text-center">Range (est.)</p>
+                </div>
+                <div class="col-4 text-center">
+                    <span class="numberData font-weight-600">{{dataVehical.topSpeed}}</span><span>mph</span>
+                    <p class="text-center">Top Speed</p>
+                </div>
+                <div class="col-4 text-center">
+                    <span class="numberData font-weight-600">{{dataVehical.mph}}</span><span>sec</span>
+                    <p class="text-center">0-60 mph</p>
+                </div>
+            </div>
+            <span></span>
+            <div class="painBox">
+                <h3 class="mt-4 font-weight-600">Paint</h3>
+                <div class="ml-1 row">
+                    <div class="border paint" id="box{{item.color}}" *ngFor="let item of dataVehical.paint" [ngStyle]="{'background-color':item.color}" (click)="chosePaint(item.color)"></div>
+                </div>
+            </div>
+
+            <button (click)="addToCart()" class="btn btn-primary butToCart mt-3 mb-3" href="#" role="button">ADD TO CART</button>
+            <div class="description">
+                <h3 class="mt-4 font-weight-600">Description</h3>
+                <p>{{dataVehical.description}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-9 col-md-9">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <h3 class="font-weight-600 interior">Interior</h3>
+                    <p>View in the vehical</p>
+                    <img class="card-img mt-2" src="{{dataVehical.interior}}" alt="">
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <h3 class="font-weight-600 autoPilot">Auto Pilot</h3>
+                    <p>{{dataVehical.autoPilot}}</p>
+                    <div class="autoPilot">
+                        <video class="card-img" src="{{dataVehical.videoAutoPilot}}" autoplay loop></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3">
+            <h3 class="font-weight-600">Wheel</h3>
+            <p><span class="font-weight-600">{{dataVehical.wheel}}</span>
+                <br>See details <a rel="" href="{{dataVehical.linkWheel}}" target="_blank">here</a>
+            </p>
+            <div class="wheel">
+                <img class="card-img" src="{{dataVehical.imgWheel}}" alt="">
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="buyBox">
+    <div class="row">
+        <div class="col-5 leftButBuy">
+            <div class="row align-items-center mt-1">
+                <div class="butBuy">
+                    <span><i class="fa-solid fa-cart-plus"></i></span>
+                </div>
+                <h6 class="h6span rightButBuy">Order</h6>
+            </div>
+        </div>
+        <div class="col-7 rightButBuy">
+            <p class="font-weight-600 text-center fixedBuy">Price Vehical <br><span>$ {{dataVehical.price}}</span></p>
+        </div>
+    </div>
+</div>
+<div class="buyBox chatBox">
+    <div class="row">
+        <div class="col-5 leftButBuy">
+            <div class="row align-items-center mt-1">
+                <div class="butBuy">
+                    <span><i class="fa-solid fa-comment-dots"></i></span>
+                </div>
+                <h6 class=" h6span rightButBuy">Chats</h6>
+            </div>
+        </div>
+        <div class="col-7 rightButBuy">
+            <p class="font-weight-600 text-center fixedBuy">Chat with <br>Tesla</p>
+        </div>
+    </div>
+</div>
+<div class="buyBox callBox">
+    <div class="row">
+        <div class="col-5 leftButBuy">
+            <div class="row align-items-center mt-1">
+                <div class="butBuy">
+                    <span><i class="fa-solid fa-phone"></i></span>
+                </div>
+                <h6 class=" h6span rightButBuy">Hotline</h6>
+            </div>
+        </div>
+        <div class="col-7 rightButBuy">
+            <p class="font-weight-600 text-center fixedBuy">Call with <br>Tesla</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<form [formGroup]="formAccount" (ngSubmit)="onSubmit()">
+    <h1 class="text-center">Create Account</h1>
+    <div class="formGroup">
+        <label>Name</label>
+        <input type="text" formControlName="name">
+        <div class="errorSpan" *ngIf="form.name.invalid && (form.name.dirty || form.name.touched)" required>
+            <div class="" *ngIf="form.name.errors?.['required']">
+                <span class="text-danger font-italic ">*Please enter a name using letters only</span>
+            </div>
+        </div>
+    </div>
+    <div class="formGroup">
+        <label>Address</label>
+        <input type="text" formControlName="address">
+        <div class="errorSpan" *ngIf="form.address.invalid && (form.address.dirty || form.address.touched)" required>
+            <div *ngIf="form.address.errors?.['required']">
+                <span class="text-danger font-italic">*Please enter a address</span>
+            </div>
+        </div>
+    </div>
+    <div class="formGroup">
+        <label>Email Address</label>
+        <input type="text" formControlName="email" [(ngModel)]="emailInp" (focus)="closeEmailError()">
+        <div class="errorSpan text-danger font-italic d-none" id="emailDuplicate">*Email has been used</div>
+        <div class="errorSpan" *ngIf="form.email.invalid && (form.email.dirty || form.email.touched)" required>
+            <div *ngIf="form.email.errors?.['required']">
+                <span class="text-danger font-italic">*Please enter a email</span>
+            </div>
+            <div *ngIf="form.email.errors?.['pattern']">
+                <span class="text-danger font-italic">*Please enter a valid email address</span>
+            </div>
+        </div>
+    </div>
+    <div class="formGroup">
+        <div class="row align-items-center position-relative">
+            <label class="labelPass">Password</label>
+            <div class="typePass" id="typePass" (click)="showTypePass()">i</div>
+            <div class="boxTypePass d-none" id="boxTypePass">
+                Please enter a valid password that has a minimum of eight characters. Password must have at least one number and one letter.
+            </div>
+        </div>
+        <div class="divPassword position-relative">
+            <input type="password" formControlName="password" id="password" (keyup)="showEye()">
+            <div class="showText d-none" id="showText" (click)="showPass()">
+                <i class="fa-solid fa-eye" id="eye"></i>
+            </div>
+        </div>
+        <div class="errorSpan" *ngIf="form.password.invalid && (form.password.dirty || form.password.touched)" required>
+            <div *ngIf="form.password.errors?.['required']">
+                <span class="text-danger font-italic">*Please enter a password</span>
+            </div>
+            <div *ngIf="!form.email.errors?.['minLenght'] && !form.password.errors?.['required']">
+                <span class="text-danger font-italic">*Please enter a valid password</span>
+            </div>
+        </div>
+    </div>
+    <div class="formGroup ml-3 row">
+        <div class="row">
+            <input class="checkbox" id="checkbox" type="checkbox" (click)="checkSignup()">
+            <span class="checkboxText">By creating a Tesla Account, I understand and agree to Tesla's <span class="dieukhoan">Privacy Notice</span> and <span class="dieukhoan">Terms of Use</span></span>
+        </div>
+    </div>
+    <div class="formGroup">
+        <button type="submit" class="btn btn-primary submitBut" [disabled]="form.firstName.invalid || form.lastName.invalid || form.email.invalid || form.password.invalid || !check">Create Account</button>
+        <span class="text-center or">OR</span>
+        <button type="button" class="btn btn-light signinBut" routerLink="/signin">Sign In</button>
+    </div>
+</form>

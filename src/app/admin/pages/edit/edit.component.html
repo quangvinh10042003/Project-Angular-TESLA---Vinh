@@ -1,0 +1,155 @@
+<div class="container-fluid">
+    <div class="type mt-5 ml-5">
+        <h2>Edit Product</h2>
+        <div class="spanType activeSpan">Vehical</div>
+
+    </div>
+    <form class="pt-3 ml-5" [formGroup]="formGroup" (ngSubmit)="submitVehical()">
+        <div class="row">
+            <div class="col-lg-12 mt-4 mb-3">
+                <h4>Infomation Vehical</h4>
+            </div>
+            <div class="col-lg-4">
+                <div class="formGroup">
+                    <label for="">Name</label>
+                    <input type="text" class="formInput" formControlName="name" placeholder="Please enter a name">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="formGroup position-relative">
+                    <label for="">Category Id</label>
+                    <input type="text" class="formInput" value="1" placeholder="Please enter category id">
+                    <div class="formInput constInput"></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="formGroup">
+                    <label for="">Price</label>
+                    <input type="text" class="formInput" formControlName="price" placeholder="Please enter a price">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="formGroup">
+                    <label for="">Range (mi)</label>
+                    <input type="text" class="formInput" formControlName="range" placeholder="Please enter a range">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="formGroup">
+                    <label for="">Top Speed (mph)</label>
+                    <input type="text" class="formInput" formControlName="topSpeed" placeholder="Please enter a speed">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="formGroup">
+                    <label for="">0-60 mph (sec)</label>
+                    <input type="text" class="formInput" formControlName="mph" placeholder="Please enter a time">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="formGroup">
+                    <label for="">Product Image</label>
+                    <input type="text" class="formInput" formControlName="imgProduct" placeholder="Please enter a vehical image">
+                    <div class="ProductImg" style="width: 80%">
+                        <img class="card-img mt-2 imgProduct" src="{{form.imgProduct.value}}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="formGroup">
+                    <label for="">Interior Image</label>
+                    <input type="text" class="formInput" formControlName="interior" placeholder="Please enter interior of vehical">
+                    <div style="width: 80%">
+                        <img class="card-img mt-2 imgProduct" src="{{form.interior.value}}">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                <div class="formGroup">
+                    <label for="">Video Auto Pilot</label>
+                    <input type="text" class="formInput mb-3" formControlName="videoAutoPilot" placeholder="Please enter a video autopilot">
+                    <label for="">Auto Pilot Description</label>
+                    <textarea class="formInput" cols="30" rows="3" formControlName="autoPilot"></textarea>
+                    <div style="width: 80%">
+                        <video class="card-img mt-2" controls src="{{form.videoAutoPilot.value}}"></video>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <h4 class="mb-3">Quantity of vehical color</h4>
+                <div class="boxQuantity mb-4">
+                    <input type="text" value="{{quantityColor}}" [(ngModel)]="quantityColor" [ngModelOptions]="{standalone: true}">
+                    <button type="button" class="butEnterQuantity" (click)="enterQuantity()">Enter</button>
+                </div>
+            </div>
+            <div class="col-lg-2" *ngFor="let item of paint, let i = index">
+                <label for="">Color {{i+1}}</label>
+                <input type="color" class="formInput inputColor" [(ngModel)]="item.color" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="col-lg-12 mt-4 d-none" id="setColor">
+                <a class="btn btn-dark text-light" role="button" (click)="setColor()"><i class="fa-solid fa-download mr-2"></i> Set Colors</a>
+                <a class="btn btn-primary text-light ml-2" role="button" (click)="showQuantity()"><i class="fa-solid fa-arrow-rotate-left mr-2"></i> Return</a>
+            </div>
+            <div class="col-lg-12 mb-4"></div>
+            <div class="col-lg-12">
+                <h4 class="mb-3">Quantity of slide item</h4>
+                <div class="boxQuantity mb-4">
+                    <input type="text" value="{{quantitySlide}}" [(ngModel)]="quantitySlide" [ngModelOptions]="{standalone: true}">
+                    <button type="button" class="butEnterQuantity" (click)="enterSlider()">Enter</button>
+                </div>
+            </div>
+            <div class="col-lg-4" *ngFor="let item of allImg, let i = index">
+                <div class="formGroup">
+                    <label for="">Slide {{i+1}}</label>
+                    <input type="text" class="formInput" placeholder="Please enter a link image of slide" [(ngModel)]="item.img" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div style="width: 80%">
+                    <img class="card-img" src="{{item.img}}">
+                </div>
+            </div>
+            <div class="col-lg-12 mt-4 d-none" id="setSlide">
+                <a class="btn btn-dark text-light" role="button" (click)="setSlide()">Set Slide</a>
+                <a class="btn btn-primary text-light ml-2" role="button" (click)="showSlider()"><i class="fa-solid fa-arrow-rotate-left mr-2"></i> Return</a>
+            </div>
+            <div class="col-lg-12 mt-4 mb-3">
+                <h4>Wheel</h4>
+            </div>
+            <div class="col-lg-6 align-self-center">
+                <div class="formGroup">
+                    <label for="">Wheel Name</label>
+                    <input type="text" class="formInput" formControlName="wheel" placeholder="Please enter a wheel">
+                </div>
+                <div class="formGroup">
+                    <label for="">Link Wheel</label>
+                    <input type="text" class="formInput" formControlName="linkWheel" placeholder="Please enter a link">
+                </div>
+                <div class="formGroup">
+                    <label for="">Wheel Image</label>
+                    <input type="text" class="formInput" formControlName="imgWheel" placeholder="Please enter a link image">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="productImg">
+                    <img class="card-img sizeImg" src="{{form.imgWheel.value}}">
+                </div>
+            </div>
+        </div>
+        <div class="formGroup mt-4">
+            <h4>Description</h4>
+            <textarea cols="100" rows="5" class="formInput" formControlName="description" placeholder="Enter your description"></textarea>
+        </div>
+        <div class="col-lg-12 mb-4">
+            <h4 class="h4checkbox">Display</h4>
+            <div class="formGroup formcheckbox mt-4">
+                <div class="row align-items-center">
+                    <input class="checkbox" type="checkbox" formControlName="inHome"><span class="spanCheckbox">Home</span>
+                    <input class="checkbox" type="checkbox" formControlName="inBanner"><span class="spanCheckbox">Banner</span>
+                    <input class="checkbox" type="checkbox" formControlName="inTopSeller"><span class="spanCheckbox">Best Seller</span>
+                    <input class="checkbox" type="checkbox" formControlName="inStock"><span class="spanCheckbox">Stock</span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary butSubmit" btn-lg btn-block>Submit</button>
+    </form>
+</div>

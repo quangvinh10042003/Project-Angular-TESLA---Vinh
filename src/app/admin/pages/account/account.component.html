@@ -1,0 +1,31 @@
+<div class="boxSearchMobile">
+    <span class="ml-2 mr-2 searchSpan">Search</span>
+    <input class="inputSearchMobile" type="text" placeholder="Search by email" [(ngModel)]="keyword">
+    <i class="fa-solid fa-magnifying-glass"></i>
+</div>
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th class="text-center">Order</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Address</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Password</th>
+            <th class="text-center">Access</th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of allAccount | searchEmail:keyword , let i = index">
+            <td class="text-center lineheight" scope="row">{{i+1}}</td>
+            <td class="text-center lineheight">{{item.name}}</td>
+            <td class="text-center lineheight">{{item.address}}</td>
+            <td class="text-center lineheight">{{item.email}}</td>
+            <td class="text-center lineheight">{{item.password}}</td>
+            <td class="text-center lineheight"><input type="checkbox" [checked]="item.access" [(ngModel)]="item.access" (change)="changeStatus(item.id)"></td>
+            <td class="text-center">
+                <a class="btn btn-light text-danger" role="button" (click)="delete(item.id)"><i class="fa-solid fa-trash"></i></a>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,105 @@
+<header class="fakeHeader"></header>
+<div class="container-fluid bg-light open-header d-none" id="oheader">
+    <div class="row align-items-center">
+        <div class="col-lg-1 categoryBut">Category</div>
+        <div class="col-lg-7">
+            <ul>
+                <li (click)="scroll()" routerLink="/allshop">
+                    <a>All Products</a>
+                </li>
+                <li *ngFor="let item of categoryList">
+                    <a (click)="searchByCategory(item.id)">{{item.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-3 position-relative">
+            <div class="ml-2 boxSearch">
+                <input class="inputSearch" type="text" [(ngModel)]="keyword">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <label class="searchBut">Search</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="banner">
+    <owl-carousel-o [options]="OptionsSliderBanner">
+
+        <ng-container *ngFor="let slide of bannerList">
+            <ng-template class="position-relative" carouselSlide id="{{slide.id}}">
+                <div class="jumbotron contentPro" style="background-image: url( {{slide.imgProduct}} );">
+                    <h1 class="text-center text-light">{{slide.name}}</h1>
+
+                    <p class="lead text-center mt-2">
+                        <a class="btn btn-light btn-lg butBuy text-dark" role="button" (click)="navigateToDetail(slide.id)" *ngIf="slide.category_id == 1; else elseButton">View Product</a>
+                        <ng-template #elseButton>
+                            <a class="btn btn-light btn-lg butBuy text-dark" (click)="navigateToDetailAccessory(slide.id)" role="button">View Detail</a>
+                        </ng-template>
+                    </p>
+                </div>
+            </ng-template>
+        </ng-container>
+
+    </owl-carousel-o>
+</div>
+<div class="bestseller">
+    <h2>Best Sellers</h2>
+    <owl-carousel-o [options]="OptionsSliderTopSeller">
+        <ng-container *ngFor="let slide of slideTopSeller">
+            <ng-template class="" carouselSlide id="{{slide.id}}">
+                <div class="BoxBestSell">
+                    <div class="boxImg boxImgBestSell position-relative">
+                        <img class="card-img imgSizeBestSell" src="{{slide.imgProduct}}">
+                        <a class="btn btn-lg butBuyCarol" *ngIf="slide.category_id == 1; else elseButton2" (click)="navigateToDetail(slide.id)" role="button">View Product</a>
+                        <ng-template #elseButton2>
+                            <a class="btn btn-lg butBuyCarol" (click)="navigateToDetailAccessory(slide.id)" role="button">View Detail</a>
+                        </ng-template>
+                        <div class="outOfStock" *ngIf="!slide.inStock">Out Of Stock</div>
+                    </div>
+                    <h4 class="text-center mt-2 nameItem">{{slide.name}}</h4>
+                    <h6 class="text-center priceItem">$ {{slide.price}}</h6>
+                </div>
+            </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+</div>
+<div class="container-fluid mt-5 ourproduct">
+    <h2>Our Products</h2>
+    <div class="boxFillterProduct">
+        <div class="row mt-3 mb-1 ">
+            <div class="col-lg-3 col-md-4">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle butDrop" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Category
+                            </button>
+                    <div class="dropdown-menu dropMenuBox" aria-labelledby="triggerId">
+                        <a class="dropdown-item dropCategory" (click)="scroll()" routerLink="/allshop">All Products</a>
+                        <a class="dropdown-item dropCategory" (click)="searchByCategory(item.id)" *ngFor="let item of categoryList">{{item.name}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="boxSearchMobile">
+                    <input class="inputSearchMobile" type="text" placeholder="Search" [(ngModel)]="keyword">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <button class="btn btn-secondary ml-1">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3  col-md-4 col-6 BoxAllProduct" *ngFor="let item of allProduct | search:keyword">
+            <div class="boxImg position-relative">
+                <div class="divImg">
+                    <img class="card-img imgSize" src="{{item.imgProduct}}">
+                </div>
+                <a class="btn btn-lg butBuyCarol" role="button" *ngIf="item.category_id == 1; else elseBut3" (click)="navigateToDetail(item.id)">View Product</a>
+                <ng-template #elseBut3>
+                    <a class="btn btn-lg butBuyCarol" role="button" (click)="navigateToDetailAccessory(item.id)">View Product</a>
+                </ng-template>
+                <div class="outOfStock" *ngIf="!item.inStock">Out Of Stock</div>
+            </div>
+            <h4 class="text-center mt-2 nameItem">{{item.name}}</h4>
+            <h6 class="text-center priceItem">$ {{item.price}}</h6>
+        </div>
+    </div>
+</div>

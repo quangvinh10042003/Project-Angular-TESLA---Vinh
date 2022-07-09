@@ -1,0 +1,65 @@
+<div class="container-fluid pt-4">
+    <h2>Category</h2>
+    <div class="addItem  mt-5 mb-3" (click)="openBox()">
+        <i class="fa-solid fa-plus"></i><span>Add New Category</span>
+    </div>
+    <div class="boxCategory addBox d-none" id="addBox">
+        <h4 class="text-center mt-2 mb-4">Add Category</h4>
+        <form [formGroup]="formGroupAdd" (ngSubmit)="submitAdd()">
+            <div class="inputBox">
+                <label for="">Id:</label>
+                <input id="inputIdAdd" type="text" formControlName="category_id">
+            </div>
+            <div class="inputBox">
+                <label for="">Name:</label>
+                <input id="inputNameAdd" type="text" formControlName="name">
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <button type="submit" class="butSave mt-3" (click)="closeBox()"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                </div>
+                <div class="col-lg-6">
+                    <button type="button" class="butCancel mt-3 float-right" (click)="closeBox()"><i class="fa-solid fa-ban"></i> Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-4" *ngFor="let item of listCategory">
+            <div class="boxCategory">
+                <form [formGroup]="formGroup" (ngSubmit)="submit(item.id)">
+                    <div class="row">
+                        <div class="col-md-10 col-10">
+                            <div class="inputBox">
+                                <label for="">Id:</label>
+                                <span id="spanId{{item.id}}">{{item.category_id}}</span>
+                                <input class="d-none" id="inputId{{item.id}}" type="text" formControlName="category_id">
+                            </div>
+
+                            <div class="inputBox">
+                                <label for="">Name:</label>
+                                <span id="spanName{{item.id}}">{{item.name}}</span>
+                                <input class="d-none" id="inputName{{item.id}}" type="text" formControlName="name">
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-2">
+                            <div class="boxButton">
+                                <button type="button"><i class="fa-solid fa-pen-to-square" (click)="edit(item.id)"></i></button>
+                                <button type="button" class="mt-1"><i class="fa-solid fa-trash" (click)="delete(item.id)"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="submit" class="butSave d-none mt-3" id="save{{item.id}}"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="button" class="butCancel d-none mt-3 float-right" id="cancel{{item.id}}" (click)="closeEdit(item.id)"><i class="fa-solid fa-ban"></i> Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

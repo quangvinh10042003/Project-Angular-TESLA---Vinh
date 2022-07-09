@@ -1,0 +1,36 @@
+<div class="container">
+    <h1>Cart</h1>
+    <div class="row mt-5">
+        <div class="col-lg-6">
+            <div class="row cardItem" *ngFor="let item of cart, let i = index">
+                <div class="col-4">
+                    <img src="{{item.img}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                </div>
+                <div class="col-5">
+                    <p class="name">{{item.name}}</p>
+                    <span>{{category[i]}}</span>
+                    <div *ngIf="item.category_id == 1; else elseBlock">
+                        <div class="row align-items-center ml-0">
+                            <span class="span mr-2 mt-2">Color: </span>
+                            <div class="paint mt-2" [ngStyle]="{'background-color':item.property}"></div>
+
+                        </div>
+                    </div>
+                    <ng-template #elseBlock>
+                        <div class="row align-items-center ml-0">
+                            <span class="span mr-2">Quantity:  </span> {{item.quantity}}
+                        </div>
+                    </ng-template>
+
+                </div>
+                <div class="col-3">
+                    <p class="price">${{item.price}}</p>
+                    <p class="remove">Remove</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+
+        </div>
+    </div>
+</div>
