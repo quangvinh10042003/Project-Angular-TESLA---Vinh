@@ -2,7 +2,7 @@
 <div class="container-fluid bg-light open-header d-none" id="oheader">
     <div class="row align-items-center">
         <div class="col-lg-1 categoryBut">Category</div>
-        <div class="col-lg-7">
+        <div class="col-lg-5">
             <ul>
                 <li (click)="scroll()" routerLink="/allshop">
                     <a>All Products</a>
@@ -12,34 +12,92 @@
                 </li>
             </ul>
         </div>
-        <div class="col-lg-3 position-relative">
+        <div class="col-lg-3">
+            <div class="row align-items-center">
+                <input class="inputSearchPrice" type="text" placeholder="min" [(ngModel)]="minPrice" (keyup)="showSearchPriceBox()">
+                <label class="ml-1 labelPriceSearch">Min Price</label>
+                <label for="" class="betweenInputPrice"></label>
+                <label class="mr-1 labelPriceSearch">Max Price</label>
+                <input class="inputSearchPrice" type="text" placeholder="max" [(ngModel)]="maxPrice" (keyup)="showSearchPriceBox()">
+            </div>
+        </div>
+        <div class="col-lg-2 position-relative">
             <div class="ml-2 boxSearch">
-                <input class="inputSearch" type="text" [(ngModel)]="keyword">
+                <input class="inputSearch" type="text" [(ngModel)]="keyword" (keyup)="showSearchBox()">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <label class="searchBut">Search</label>
             </div>
         </div>
     </div>
 </div>
-<div class="banner">
-    <owl-carousel-o [options]="OptionsSliderBanner">
-
-        <ng-container *ngFor="let slide of bannerList">
-            <ng-template class="position-relative" carouselSlide id="{{slide.id}}">
-                <div class="jumbotron contentPro" style="background-image: url( {{slide.imgProduct}} );">
-                    <h1 class="text-center text-light">{{slide.name}}</h1>
-
-                    <p class="lead text-center mt-2">
-                        <a class="btn btn-light btn-lg butBuy text-dark" role="button" (click)="navigateToDetail(slide.id)" *ngIf="slide.category_id == 1; else elseButton">View Product</a>
-                        <ng-template #elseButton>
-                            <a class="btn btn-light btn-lg butBuy text-dark" (click)="navigateToDetailAccessory(slide.id)" role="button">View Detail</a>
-                        </ng-template>
-                    </p>
+<div class="banner mb-5">
+    <div id="carouselId" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselId" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselId" data-slide-to="1"></li>
+            <li data-target="#carouselId" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <div class="jumbotron contentPro" style="background-image: url( https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_S/INTERIOR/1669541-00-A_1_2000.jpg );">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-7 position-relative pr-5">
+                            <iframe class="z-index900" src='https://www.youtube.com/embed/XB2g7-HgE_g?autoplay=1&&mute=1&playlist=XB2g7-HgE_g&loop=1' frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-lg-4 col-md-5 position-relative ">
+                            <h1 class="text-center text-light z-index900">Revolutionize Your Commute</h1>
+                            <p class="lead text-center text-light z-index900 d-none d-lg-block d-md-block">
+                                Autopilot allows Model S to steer within a lane, change lanes with the simple tap of a turn signal, and manage speed by using active, traffic-aware cruise control. Digital control of motors, brakes, and steering helps avoid collisions from the front andsides,
+                                as well as preventing the car from wandering off the road.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </ng-template>
-        </ng-container>
-
-    </owl-carousel-o>
+                <div class="contentPro outContent"></div>
+            </div>
+            <div class="carousel-item">
+                <div class="jumbotron contentPro" style="background-image: url( https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_S/INTERIOR/1669541-00-A_1_2000.jpg );">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-7 position-relative pr-5">
+                            <iframe class="z-index900" src="https://www.youtube.com/embed/v27iBE5qs5c?loop=1&playlist=v27iBE5qs5c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-lg-4 col-md-5 position-relative">
+                            <h1 class="text-center text-light z-index900">A Clean Future</h1>
+                            <p class="lead text-center text-light z-index900 d-none d-lg-block d-md-block">
+                                John has owned his Model S for 8 months now and is looking to the future. In Model S he found a car that suited both his lifestyle and his needs. With a full charge in the morning, he can do all of his driving and come home and plug it in at night. For
+                                him, the future of transport lies solely with electric.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contentPro outContent"></div>
+            </div>
+            <div class="carousel-item">
+                <div class="jumbotron contentPro" style="background-image: url( https://digitalassets-shop.tesla.com/image/upload/f_auto,q_auto/v1/content/dam/tesla/CAR_ACCESSORIES/MODEL_S/INTERIOR/1669541-00-A_1_2000.jpg );">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-7 position-relative pr-5">
+                            <iframe class="z-index900" src="https://www.youtube.com/embed/lDKt7gCnd_M?loop=1&playlist=lDKt7gCnd_M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-lg-4 col-md-5 position-relative">
+                            <h1 class="text-center text-light z-index900 ">Inside Tesla</h1>
+                            <p class="lead text-center text-light z-index900 d-none d-lg-block d-md-block">
+                                Welcome to "Inside Tesla." This series of Tuesday updates is designed to take you behind the scenes of Model S production as we count down the days to our first deliveries.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contentPro outContent"></div>
+            </div>
+        </div>
+        <a class="carousel-control-prev carolselButton" href="#carouselId" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next carolselButton" href="#carouselId" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>
 <div class="bestseller">
     <h2>Best Sellers</h2>
@@ -49,10 +107,7 @@
                 <div class="BoxBestSell">
                     <div class="boxImg boxImgBestSell position-relative">
                         <img class="card-img imgSizeBestSell" src="{{slide.imgProduct}}">
-                        <a class="btn btn-lg butBuyCarol" *ngIf="slide.category_id == 1; else elseButton2" (click)="navigateToDetail(slide.id)" role="button">View Product</a>
-                        <ng-template #elseButton2>
-                            <a class="btn btn-lg butBuyCarol" (click)="navigateToDetailAccessory(slide.id)" role="button">View Detail</a>
-                        </ng-template>
+                        <a class="btn btn-lg butBuyCarol" (click)="navigateToProduct(slide.id, slide.category_id)" role="button">View Product</a>
                         <div class="outOfStock" *ngIf="!slide.inStock">Out Of Stock</div>
                     </div>
                     <h4 class="text-center mt-2 nameItem">{{slide.name}}</h4>
@@ -66,7 +121,7 @@
     <h2>Our Products</h2>
     <div class="boxFillterProduct">
         <div class="row mt-3 mb-1 ">
-            <div class="col-lg-3 col-md-4">
+            <div class="col-lg-4 col-md-4">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle butDrop" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Category
@@ -77,29 +132,55 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 col-md-8">
+            <div class="col-md-4">
+                <div class="ml-2">
+                    <div class="row align-items-center">
+                        <input class="inputSearchPrice" type="text" placeholder="Min price" [(ngModel)]="minPrice" (keyup)="showSearchPriceBox()">
+                        <label class="ml-1 labelPriceSearch ">Min Price</label>
+                        <label for="" class="betweenInputPrice"></label>
+                        <label class="mr-1 labelPriceSearch">Max Price</label>
+                        <input class="inputSearchPrice" type="text" placeholder="Max price" [(ngModel)]="maxPrice" (keyup)="showSearchPriceBox()">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
                 <div class="boxSearchMobile">
-                    <input class="inputSearchMobile" type="text" placeholder="Search" [(ngModel)]="keyword">
+                    <input class="inputSearchMobile" type="text" placeholder="Search" [(ngModel)]="keyword" (keyup)="showSearchBox()">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <button class="btn btn-secondary ml-1">Search</button>
                 </div>
             </div>
         </div>
+
     </div>
     <div class="row">
-        <div class="col-lg-3  col-md-4 col-6 BoxAllProduct" *ngFor="let item of allProduct | search:keyword">
+        <div class="col-lg-3  col-md-4 col-6 BoxAllProduct" *ngFor="let item of allProduct">
             <div class="boxImg position-relative">
                 <div class="divImg">
                     <img class="card-img imgSize" src="{{item.imgProduct}}">
                 </div>
-                <a class="btn btn-lg butBuyCarol" role="button" *ngIf="item.category_id == 1; else elseBut3" (click)="navigateToDetail(item.id)">View Product</a>
-                <ng-template #elseBut3>
-                    <a class="btn btn-lg butBuyCarol" role="button" (click)="navigateToDetailAccessory(item.id)">View Product</a>
-                </ng-template>
+                <a class="btn btn-lg butBuyCarol" role="button" (click)="navigateToProduct(item.id, item.category_id)">View Product</a>
+
                 <div class="outOfStock" *ngIf="!item.inStock">Out Of Stock</div>
             </div>
             <h4 class="text-center mt-2 nameItem">{{item.name}}</h4>
             <h6 class="text-center priceItem">$ {{item.price}}</h6>
         </div>
+    </div>
+</div>
+<div class="boxDetailSearched searchBoxInPrice d-none" id="boxDetailSearched">
+    <div class="position-relative">
+        <ul>
+            <li class="detailSearch" *ngFor="let item of allProduct | search:keyword | searchMinPrice:minPrice | searchMaxPrice:maxPrice" (click)="navigateToProduct(item.id, item.category_id)">
+                <div class="row">
+                    <div class="col-3">
+                        <img class="card-img" src="{{item.imgProduct}}" alt="">
+                    </div>
+                    <div class="col-9">
+                        <p class="nameSearched">{{item.name}}</p>
+                        <p class="priceSearched">${{item.price}}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>

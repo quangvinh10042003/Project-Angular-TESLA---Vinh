@@ -24,6 +24,9 @@ export class SigninComponent implements OnInit {
     ])
   })
   ngOnInit(): void {
+    document.documentElement.scrollTop = 0;
+    let openMenuInAccountPages = document.getElementById('openMenuInAccountPages') as HTMLDivElement | null;
+    openMenuInAccountPages?.classList.add('d-none');
     let data:any = sessionStorage.getItem('account');
     if(data){
       data = JSON.parse(data);
@@ -57,7 +60,7 @@ export class SigninComponent implements OnInit {
     }
   }
   onSubmit(){
-    let MyData;
+    let MyData:any;
     this.accountService.getAll().subscribe((data:any)=>{
       MyData = data.find((item:any)=>{
         return this.emailInp === item.email && this.passwordInp === item.password;
@@ -66,9 +69,10 @@ export class SigninComponent implements OnInit {
         let erorrDiv = document.getElementById('falseSignIn') as HTMLDivElement | null;
         erorrDiv?.classList.remove('d-none');
       }else{
+        this.accountService.isUserLoggedIn.next(true);
+        this.accountService.totalCard.next(MyData.cart.length);
         sessionStorage.removeItem('account');
-        sessionStorage.setItem('accountSignIn', JSON.stringify(MyData));
-        sessionStorage.setItem('check','true');
+        sessionStorage.setItem('accountSignIn', JSON.stringify({name:MyData.name,id:MyData.id,access:MyData.access}));
         this.router.navigate(['']);
       }
     })

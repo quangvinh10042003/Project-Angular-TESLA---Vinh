@@ -16,9 +16,7 @@ export class SignupComponent implements OnInit {
     name: new FormControl('', [
       Validators.required,
     ]),
-    address: new FormControl('', [
-      Validators.required
-    ]),
+    address: new FormControl(''),
     email: new FormControl('', [
       Validators.required,
       Validators.pattern('^[a-zA-Z_.][a-zA-Z0-9]{0,10}@[a-z0-9]{4,10}\.[a-z]{2,5}$')
@@ -27,10 +25,15 @@ export class SignupComponent implements OnInit {
       Validators.required,
       Validators.minLength(8)
     ]),
-    access: new FormControl(false)
+    access: new FormControl(false),
+    cart: new FormControl([]),
+    gender: new FormControl(''),
+    telephoneNumber: new FormControl(''),
+    history: new FormControl([]),
   })
   constructor(private router: Router, private accountService: AccountService) { }
   ngOnInit(): void {
+    document.documentElement.scrollTop = 0;
     document.addEventListener('click', function handleClickOutsideBox(event: any) {
       let but = document.getElementById('typePass') as HTMLDivElement | null;
       let box = document.getElementById('boxTypePass') as HTMLDivElement | null;
@@ -53,6 +56,8 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
+    let openMenuInAccountPages = document.getElementById('openMenuInAccountPages') as HTMLDivElement | null;
+    openMenuInAccountPages?.classList.add('d-none');
     let MyEmail;
     this.accountService.getAll().subscribe((data: any) => {
       MyEmail = data.find((item: any) => {

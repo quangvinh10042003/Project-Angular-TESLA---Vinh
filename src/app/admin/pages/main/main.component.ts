@@ -17,6 +17,7 @@ export class MainComponent implements OnInit {
   constructor(private vehicalSer: VehicalService, private AccessorySer: ProductAcessoryService, private router: Router, private categorySer: CategoryService, private actRout: ActivatedRoute) { }
 
   ngOnInit(): void {
+    document.documentElement.scrollTop = 0;
    // lấy sản phẩm theo category
     this.takeItemByCategory();
     // lấy ra category 

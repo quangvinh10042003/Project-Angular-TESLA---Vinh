@@ -11,6 +11,5 @@ export class ProductAccessory {
     imgProduct?:string;
     allImg?:any;
     inHome?: boolean;
-    inBanner?: boolean;
     inTopSeller?: boolean;
 }

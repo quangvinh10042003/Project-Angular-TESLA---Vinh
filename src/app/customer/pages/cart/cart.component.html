@@ -1,36 +1,163 @@
-<div class="container">
+<div class="container box-cart">
     <h1>Cart</h1>
-    <div class="row mt-5">
-        <div class="col-lg-6">
+    <ng-template #elseCartEmpty>
+        <div class="boxAllCart">
+            <h4 class="ml-lg-5 mt-5 ml-md-0 text-lg-left text-center">Your cart is empty.</h4>
+            <a class="btn btn-primary ml-lg-5 mt-3 ml-0 text-center goToShop d-block mx-auto" routerLink="/allshop" role="button">CONTINUE SHOPPING</a>
+        </div>
+    </ng-template>
+    <div class="row justify-content-between mt-3" *ngIf="getCart!=0; else elseCartEmpty">
+        <div class="col-lg-7 pr-5 boxAllCart">
             <div class="row cardItem" *ngFor="let item of cart, let i = index">
-                <div class="col-4">
+                <div class="col-lg-4 col-md-3 col-5">
                     <img src="{{item.img}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
                 </div>
-                <div class="col-5">
-                    <p class="name">{{item.name}}</p>
+                <div class="col-lg-5 col-md-6 col-7">
+                    <p class="name" *ngIf="item.category_id == 1; else elseName" routerLink="/detail/{{item.id}}">{{item.name}}</p>
+                    <ng-template #elseName>
+                        <p class="name" routerLink="/detailAccessory/{{item.id}}">{{item.name}}</p>
+                    </ng-template>
                     <span>{{category[i]}}</span>
                     <div *ngIf="item.category_id == 1; else elseBlock">
-                        <div class="row align-items-center ml-0">
-                            <span class="span mr-2 mt-2">Color: </span>
-                            <div class="paint mt-2" [ngStyle]="{'background-color':item.property}"></div>
-
+                        <div class="row align-items-center ml-0 pt-2 position-relative">
+                            <span class="span mr-2 mt-4">Color: </span>
+                            <div class="paint mt-4 border" [ngStyle]="{'background-color':item.property}"></div>
+                            <span class="mt-4 remove" (click)="removeItem(i)">Remove</span>
                         </div>
                     </div>
                     <ng-template #elseBlock>
-                        <div class="row align-items-center ml-0">
-                            <span class="span mr-2">Quantity:  </span> {{item.quantity}}
+                        <div class="row align-items-center ml-0 mt-2 position-relative">
+                            <span class="span mr-2">Quantity:  </span>
+                            <div class="boxQuantity row align-items-center">
+                                <span class="useQuantity reduceBut" (click)="reduceQuantity(i)">-</span>
+                                <span class="quantityInp" [(ngModel)]="item.quantity" id="quantityInp" type="text">{{item.quantity}}</span>
+                                <span class="useQuantity" (click)="increaseQuantity(i)">+</span>
+                            </div>
+                            <span class="mt-2 remove" (click)="removeItem(i)">Remove</span>
                         </div>
                     </ng-template>
 
                 </div>
-                <div class="col-3">
-                    <p class="price">${{item.price}}</p>
-                    <p class="remove">Remove</p>
+                <div class="col-lg-3 col-md-3">
+                    <div class="position-relative">
+                        <p class="price">${{listPrice[i]}}</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-5">
+            <div class="payment">
+                <h3>Order Summary</h3>
+                <div class="row">
+                    <div class="col-5">
+                        <p>Shipping</p>
+                        <p>Sales Tax </p>
+                        <h4>Subtotal</h4>
+                    </div>
+                    <div class="col-7">
+                        <p class="text-right">Calculated at checkout</p>
+                        <p class="text-right">Calculated at checkout</p>
+                        <h4 class="text-right">$ {{subtotal}}</h4>
+                    </div>
+                </div>
+                <a class="btn btn-primary text-light checkout" role="button" data-toggle="modal" data-target="#modelId">CHECKOUT</a>
+            </div>
+        </div>
+        <div class="paidMobile">
+            <a class="btn btn-primary text-light checkout checkoutButMobile" role="button" data-toggle="modal" data-target="#modelId">CHECKOUT</a>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade modalBox" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog max-width-0" role="document">
+        <div class="modal-content modalCustom">
+            <form [formGroup]="formGroup">
+                <div class="modal-header d-block">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                    <h2 class="text-center ml-4 mt-2">Shipping</h2>
+                </div>
+                <div class="modal-body">
 
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="formGroup">
+                                <label for="">Name</label>
+                                <input type="text" formControlName="name">
+                                <div class="errorSpan" *ngIf="form.name.invalid && (form.name.dirty || form.name.touched)" required>
+                                    <div class="" *ngIf="form.name.errors?.['required']">
+                                        <span class="text-danger font-italic ">*Please enter the name of the consignee</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="formGroup">
+                                <label for="">Email</label>
+                                <input type="text" formControlName="email">
+                                <div class="errorSpan" *ngIf="form.email.invalid && (form.email.dirty || form.email.touched)" required>
+                                    <div class="" *ngIf="form.email.errors?.['required']">
+                                        <span class="text-danger font-italic ">*Please enter the email of the consignee</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="formGroup">
+                                <label for="">Address</label>
+                                <input type="text" formControlName="address">
+                                <div class="errorSpan" *ngIf="form.address.invalid && (form.address.dirty || form.address.touched)" required>
+                                    <div class="" *ngIf="form.address.errors?.['required']">
+                                        <span class="text-danger font-italic ">*Please enter the address of the consignee</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="formGroup">
+                                <label for="">Telephone Number</label>
+                                <input type="text" formControlName="telephoneNumber">
+                                <div class="errorSpan" *ngIf="form.telephoneNumber.invalid && (form.telephoneNumber.dirty || form.telephoneNumber.touched)" required>
+                                    <div class="" *ngIf="form.telephoneNumber.errors?.['required']">
+                                        <span class="text-danger font-italic ">*Please enter the Telephone number of the consignee</span>
+                                    </div>
+                                    <div class="" *ngIf="form.telephoneNumber.errors?.['pattern']">
+                                        <span class="text-danger font-italic ">*Please enter a valid telephone number</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="formGroup">
+                                        <h4 class="ml-3 mt-2">Subtotal: <span class="h4span">${{subtotal}}</span></h4>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="formGroup">
+                                        <h4 class="ml-3 mt-2">Date: <span class="h4span">{{dateBuy}}</span></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-block">
+                    <div class="ml-4 mt-2">
+                        <h2 class="text-center">Billing</h2>
+                        <div class="boxBilling">
+                            <div class="d-flex align-items-center ml-0 mt-2">
+                                <input type="checkbox" id="checkbox" (change)="checkBilling()"><label for="checkbox" class="labelCheckbox">Billing address is the same as shipping</label>
+                            </div>
+                        </div>
+                        <button type="submit" data-dismiss="modal" class="btn btn-primary text-light checkout checkoutModal mt-3 mb-4" [disabled]="!billingCheckbox || form.name.invalid || form.address.invalid || form.email.invalid || form.telephoneNumber.invalid" (click)="buyCart()"
+                            role="button">CHECKOUT</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

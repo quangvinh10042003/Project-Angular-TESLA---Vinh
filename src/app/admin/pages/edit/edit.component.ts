@@ -34,13 +34,13 @@ export class EditComponent implements OnInit {
     linkWheel: new FormControl(''),
     description: new FormControl(''),
     inHome: new FormControl(false),
-    inBanner: new FormControl(false),
     inTopSeller: new FormControl(false), 
     inStock: new FormControl(true),
   })
   constructor(private actRouter: ActivatedRoute, private vehicalSer: VehicalService, private router: Router) { }
 
   ngOnInit(): void {
+    document.documentElement.scrollTop = 0;
     this.id = this.actRouter.snapshot.params['id'];
     this.vehicalSer.getItem(this.id).subscribe(data => {
       if (data) {
@@ -119,8 +119,41 @@ export class EditComponent implements OnInit {
           this.router.navigate(['admin']);
         });
       } else if (result.isDenied) {
-        Swal.fire('Changes are not saved', '', 'info')
+        Swal.fire('Changes are not saved', '', 'info');
+        this.router.navigate(['admin']);
       }
     })
+  }
+  changeImage(event:any,i:number){
+    const reader = new FileReader();
+    const file = event.target.files;
+    reader.readAsDataURL(file[0]);
+    reader.onload = ()=>{
+      this.allImg[i].img = reader.result;
+    }
+  }
+  changeImageInterior(event:any){
+    const reader = new FileReader();
+    const file = event.target.files;
+    reader.readAsDataURL(file[0]);
+    reader.onload = ()=>{
+      this.form.interior.value = reader.result;
+    }
+  }
+  changeImageProduct(event:any){
+    const reader = new FileReader();
+    const file = event.target.files;
+    reader.readAsDataURL(file[0]);
+    reader.onload = ()=>{
+      this.form.imgProduct.value = reader.result;
+    }
+  }
+  changeVideoAutoPilot(event:any){
+    const reader = new FileReader();
+    const file = event.target.files;
+    reader.readAsDataURL(file[0]);
+    reader.onload = ()=>{
+      this.form.videoAutoPilot.value = reader.result;
+    }
   }
 }

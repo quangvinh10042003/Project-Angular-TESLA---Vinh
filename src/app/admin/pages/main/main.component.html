@@ -11,7 +11,7 @@
                         </button>
                 <div class="dropdown-menu dropMenuBox" aria-labelledby="triggerId">
                     <a class="dropdown-item dropCategory" routerLink="/admin">All Products</a>
-                    <a class="dropdown-item dropCategory" (click)="searchByCategory(item.id)" *ngFor="let item of categoryList">{{item.name}}</a>
+                    <a class="dropdown-item dropCategory" (click)="searchByCategory(item.category_id)" *ngFor="let item of categoryList">{{item.name}}</a>
                 </div>
             </div>
         </div>
@@ -32,12 +32,11 @@
             <th class="text-center thLineHeight" rowspan="2">Category Id</th>
             <th class="text-center thLineHeight" rowspan="2">Price</th>
             <th class="text-center thLineHeight" rowspan="2">Image</th>
-            <th class="text-center" colspan="4">Display</th>
+            <th class="text-center" colspan="3">Display</th>
             <th class="text-center" colspan="3">Setting</th>
         </tr>
         <tr>
             <th class="text-center ">Home</th>
-            <th class="text-center ">Banner</th>
             <th class="text-center ">Best Seller</th>
             <th class="text-center ">Stock</th>
             <th class="text-center ">Detail</th>
@@ -54,9 +53,6 @@
             <td class="text-center pl-3 pr-3 thLineHeight"><img src="{{item.imgProduct}}" width="100px" alt=""></td>
             <td class="text-center pl-3 pr-3 thLineHeight">
                 <input type="checkbox" class="checkboxDisplay" [checked]="item.inHome" [(ngModel)]="item.inHome" (change)="changeStatus(item.category_id, item.id)">
-            </td>
-            <td class="text-center pl-3 pr-3 thLineHeight">
-                <input type="checkbox" class="checkboxDisplay" [checked]="item.inBanner" [(ngModel)]="item.inBanner" (change)="changeStatus(item.category_id, item.id)">
             </td>
             <td class="text-center pl-3 pr-3 thLineHeight">
                 <input type="checkbox" class="checkboxDisplay" [checked]="item.inTopSeller" [(ngModel)]="item.inTopSeller" (change)="changeStatus(item.category_id, item.id)">

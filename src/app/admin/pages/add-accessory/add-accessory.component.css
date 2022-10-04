@@ -19,7 +19,7 @@ form {
 
 label {
     width: 100%;
-    font-size: 20px;
+    font-size: 18px;
     margin-left: 20px;
 }
 
@@ -40,7 +40,7 @@ label {
 }
 
 .sizeImg {
-    padding-top: 32px;
+    padding-top: 64px;
     width: 100%;
     max-height: 332px;
 }

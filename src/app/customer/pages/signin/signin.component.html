@@ -28,8 +28,8 @@
             <div *ngIf="form.password.errors?.['required']">
                 <span class="text-danger font-italic errorSpan">*Please enter a password</span>
             </div>
-            <div *ngIf="!form.email.errors?.['minLenght'] && !form.password.errors?.['required']">
-                <span class="text-danger font-italic errorSpan">*Please enter a valid password</span>
+            <div *ngIf="!form.password.errors?.['minLenght'] && !form.password.errors?.['required']">
+                <span class="text-danger font-italic errorSpan">*Please enter a valid password that has a minimum of eight characters.</span>
             </div>
         </div>
     </div>

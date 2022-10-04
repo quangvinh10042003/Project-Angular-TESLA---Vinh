@@ -11,6 +11,8 @@ h2:first-child {
     margin: 20px auto;
 }
 
+@media screen and (max-width:768px) {}
+
 @media screen and (max-width:320px) {
     .boxImg {
         width: 300px;

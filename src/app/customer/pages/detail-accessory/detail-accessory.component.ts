@@ -11,6 +11,7 @@ import { ProductAccessory } from 'src/app/models/product-accessory';
   styleUrls: ['./detail-accessory.component.css']
 })
 export class DetailAccessoryComponent implements OnInit {
+  getCart: number = 0;
   data: any;
   accountSignIn: any;
   sliderImg: any = [];
@@ -19,8 +20,17 @@ export class DetailAccessoryComponent implements OnInit {
   constructor(private accountSer: AccountService, private accessorySer: ProductAcessoryService, private actRout: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    document.documentElement.scrollTop = 0;
+    let openMenuInAccountPages = document.getElementById('openMenuInAccountPages') as HTMLDivElement | null;
+    openMenuInAccountPages?.classList.add('d-none');
+    this.getItem();
+    this.accountSignIn = sessionStorage.getItem('accountSignIn');
+    this.accountSignIn = JSON.parse(this.accountSignIn);
+  }
+ 
+  getItem() {
     let id = this.actRout.snapshot.params['id'];
-    this.accessorySer.getItem(id).subscribe(data => {
+    this.accessorySer.getItem(id).subscribe((data: any) => {
       this.sliderImg = data.allImg;
       this.data = data;
       this.accessorySer.getAll().subscribe(data => {
@@ -29,8 +39,6 @@ export class DetailAccessoryComponent implements OnInit {
         })
       })
     })
-    this.accountSignIn = sessionStorage.getItem('accountSignIn');
-    this.accountSignIn = JSON.parse(this.accountSignIn);
   }
   OptionsSlider: OwlOptions = {
     loop: true,
@@ -81,6 +89,7 @@ export class DetailAccessoryComponent implements OnInit {
     }
   }
   navigateToDetailAccessory(id: number) {
+    document.documentElement.scrollTop = 0;
     this.router.navigate([`/detailAccessory/${id}`]);
     this.accessorySer.getItem(id).subscribe(data => {
       this.sliderImg = data.allImg;
@@ -94,16 +103,47 @@ export class DetailAccessoryComponent implements OnInit {
     this.accountSignIn = sessionStorage.getItem('accountSignIn');
   }
   addToCart() {
-    this.accountSer.getItem(this.accountSignIn.id).subscribe((data: any) => {
-      data.cart.push({ name: this.data.name, quantity: this.quantityValue, price: this.data.price });
-      this.accountSer.editItem(this.accountSignIn.id, data).subscribe();
-    })
-    Swal.fire({
-      position: 'top',
-      icon: 'success',
-      title: 'The product has been added to your cart',
-      showConfirmButton: false,
-      timer: 1000
-    })
+    if(this.accountSignIn){
+      this.accountSer.getItem(this.accountSignIn.id).subscribe((data: any) => {
+        let checkData:any = data.cart.find((item: any) => {
+          return item.id == this.data.id && item.category_id == this.data.category_id;
+        })
+        if (checkData) {
+          checkData.quantity += this.quantityValue;
+          this.accountSer.editItem(this.accountSignIn.id,data).subscribe();
+        } else {
+          this.getCart = data.cart.length;
+          data.cart.push({ id: this.data.id, name: this.data.name, img: this.data.imgProduct, category_id: this.data.category_id, quantity: this.quantityValue, price: this.data.price });
+          this.accountSer.editItem(this.accountSignIn.id, data).subscribe();
+          this.getCart += 1;
+          this.accountSer.totalCard.next(this.getCart);
+        }
+      })
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'The product has been added to your cart',
+        showConfirmButton: false,
+        timer: 1000
+      })
+    }
+    else{
+      Swal.fire({
+        title: 'Please login before adding to cart',
+        text: "We will redirect you to the login page. Please log in to an authorized account to continue",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Login'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['/signin']);
+        }
+        else{
+          return
+        }
+      })
+    }
   }
 }

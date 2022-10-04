@@ -21,6 +21,5 @@ export class Vehical {
     autoPilot?:string;
     videoAutoPilot?:string;
     inHome?:boolean;
-    inBanner?:boolean;
     inTopSeller?:boolean;
 }

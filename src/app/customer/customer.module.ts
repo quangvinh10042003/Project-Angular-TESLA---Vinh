@@ -1,4 +1,4 @@
-
+import { AccountComponent } from './pages/account/account.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TeslaAboutComponent } from './pages/tesla-about/tesla-about.component';
@@ -18,6 +18,12 @@ import { SearchPipe } from './pipes/search.pipe';
 import { DetailComponent } from './pages/detail/detail.component';
 import { DetailAccessoryComponent } from './pages/detail-accessory/detail-accessory.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { SearchMinPricePipe } from './pipes/search-min-price.pipe';
+import { SearchMaxPricePipe } from './pipes/search-max-price.pipe';
+import { AccountSettingComponent } from './pages/account-setting/account-setting.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { HistoryComponent } from './pages/history/history.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +39,13 @@ import { CartComponent } from './pages/cart/cart.component';
     SearchPipe,
     DetailComponent,
     DetailAccessoryComponent,
-    CartComponent
+    CartComponent,
+    SearchMinPricePipe,
+    SearchMaxPricePipe,
+    AccountComponent,
+    AccountSettingComponent,
+    ChangePasswordComponent,
+    HistoryComponent
   ],
   imports: [
     CommonModule,

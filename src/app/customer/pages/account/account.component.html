@@ -1,0 +1,56 @@
+<div class="container-fluid boxContainer">
+    <div class="row">
+        <div class="col-lg-3 px-5">
+            <div class="list-group menu ml-4">
+                <a class="list-group-item list-group-item-action" routerLink="/account"><span><i class="fa-regular fa-user active"></i></span>User Profile</a>
+                <a class="list-group-item list-group-item-action" routerLink="/accountSetting"><span><i class="fa-solid fa-user-pen" ></i></span>Profile Settings</a>
+                <a class="list-group-item list-group-item-action" routerLink="/history"><span><i class="fa-solid fa-shirt"></i></span>Order History</a>
+                <a (click)="signout()" class="list-group-item list-group-item-action"><span><i class="fa-solid fa-right-from-bracket "></i></span>Sign Out</a>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="main mt-2">
+                <h1 class="pb-2">User Profile</h1>
+                <div class="row mt-4">
+                    <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                        <label>Name</label>
+                        <p>{{account.name}}</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                        <label>Email</label>
+                        <p>{{account.email}}</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                        <label>Password</label>
+                        <p>{{passwordHide}}</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                        <label>Gender</label>
+                        <p class="font-italic" *ngIf="account.gender == ''; else elseGender">*No infomation</p>
+                        <ng-template #elseGender>
+                            <p>{{account.gender}}</p>
+                        </ng-template>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                        <label>Address</label>
+                        <p class="font-italic" *ngIf="account.address == ''; else elseAddress">*No infomation</p>
+                        <ng-template #elseAddress>
+                            <p>{{account.address}}</p>
+                        </ng-template>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-2 mt-2">
+                        <label>Phone Number</label>
+                        <p class="font-italic" *ngIf="account.telephoneNumber == ''; else elseTele">*No infomation</p>
+                        <ng-template #elseTele>
+                            <p>{{account.telephoneNumber}}</p>
+                        </ng-template>
+                    </div>
+
+                    <div class="col-12 mt-5">
+                        <label (click)="deleteAccount()">Delete Account</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

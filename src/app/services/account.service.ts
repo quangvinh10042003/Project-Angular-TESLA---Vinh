@@ -1,5 +1,5 @@
 import { Account } from './../models/account';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 const urlAPIAccount = "http://localhost:3000/account"
@@ -7,6 +7,8 @@ const urlAPIAccount = "http://localhost:3000/account"
   providedIn: 'root'
 })
 export class AccountService {
+  totalCard = new Subject<number>();
+  isUserLoggedIn = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) { }
   addItem(data:Account){
     return this.http.post(urlAPIAccount,data)

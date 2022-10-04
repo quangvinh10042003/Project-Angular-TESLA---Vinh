@@ -4,8 +4,12 @@ import { Injectable } from "@angular/core";
 })
 export class Account {
     id?:number;
-    firstName?:string;
-    lastName?:string;
+    name?:string;
+    address?:string;
     email?:string;
     password?:string;
+    gender?:string;
+    telephoneNumber?:number;
+    cart?:any;
+    history?:any;
 }

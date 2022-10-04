@@ -1,20 +1,43 @@
-* {
-    font-family: 'Montserrat', sans-serif;
-}
-
-.fakeHeader {
-    width: 100%;
-    height: 56px;
-    background-color: #fff;
+.carolselButton {
+    width: 50px;
+    height: 200px;
+    top: 50%;
+    transform: translate( 0%, -50%);
 }
 
 .contentPro {
-    width: 100%;
-    height: 800px;
+    height: 700px;
     background-size: 100% 100%;
-    background-repeat: no-repeat;
-    margin: 0;
-    border-radius: 0;
+}
+
+.contentPro h1 {
+    width: 90%;
+    display: inline;
+    text-align: center;
+}
+
+.contentPro p {
+    display: inline;
+    width: 90%;
+    text-align: center;
+    top: 150px;
+}
+
+.contentPro iframe {
+    width: 85%;
+    height: 600px;
+}
+
+.z-index900 {
+    position: absolute;
+    z-index: 988;
+}
+
+.outContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.729)
 }
 
 h4 {
@@ -29,7 +52,7 @@ h4 {
 
 .contentPro h1 {
     font-weight: 700;
-    margin-top: 250px;
+    margin-top: 10px;
 }
 
 .bestseller h2 {
@@ -79,7 +102,7 @@ h4 {
 
 .open-header {
     width: 100%;
-    height: 80px;
+    min-height: 80px;
     top: 55px;
     position: fixed;
     z-index: 999;
@@ -87,9 +110,13 @@ h4 {
     border-bottom: 1px solid rgba(167, 167, 167, 0.215);
 }
 
+.open-header ul {
+    padding-left: 0px;
+}
+
 .open-header ul li {
     display: inline-block;
-    padding: 10px 15px;
+    padding: 10px 10px;
     margin-left: 10px;
     margin-top: 20px;
     cursor: pointer;
@@ -114,14 +141,14 @@ h4 {
 }
 
 .searchBut {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 600;
     line-height: 10px;
 }
 
 .boxSearch {
     position: absolute;
-    right: -70px;
+    right: -100px;
     top: -11px;
 }
 
@@ -130,16 +157,16 @@ h4 {
     top: 0;
     right: 100px;
     top: 5px;
-    right: 115px
+    right: 90px
 }
 
 .inputSearch {
-    margin-right: 20px;
+    margin-right: 10px;
     margin-top: -3px;
     border-radius: 20px 0px 0px 20px;
-    width: 300px;
+    width: 250px;
     border: none;
-    padding: 5px 10px;
+    padding: 5px 15px;
     background: rgba(185, 185, 185, 0.181);
 }
 
@@ -227,11 +254,12 @@ h4 {
 
 .boxSearchMobile i {
     position: absolute;
-    top: 9px;
-    right: 115px;
+    top: 10px;
+    right: 25px;
 }
 
 .boxFillterProduct {
+    position: static;
     display: none;
 }
 
@@ -252,7 +280,105 @@ h2 {
     left: 0;
 }
 
+.boxDetailSearched {
+    display: block;
+    width: 400px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    position: fixed;
+    z-index: 991;
+    right: 35px;
+    top: 120px;
+    max-height: 350px;
+    overflow: scroll;
+    cursor: pointer;
+}
+
+.searchBoxInPrice {
+    right: 425px;
+}
+
+.boxDetailSearched ul {
+    padding-left: 10px;
+}
+
+.detailSearch {
+    list-style: none;
+    margin: 10px 0px;
+    padding: 5px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+
+.detailSearch:last-child {
+    border-bottom: none;
+}
+
+.nameSearched {
+    font-weight: 600;
+    line-height: 14px;
+    font-size: 15px;
+}
+
+.priceSearched {
+    font-size: 14px;
+    margin-top: -15px;
+}
+
+.inputSearchPrice {
+    border-radius: 100px;
+    width: 90px;
+    border: none;
+    padding: 7px 15px;
+    background: rgba(185, 185, 185, 0.181);
+}
+
+.labelPriceSearch {
+    margin-bottom: -3px;
+    font-weight: 600;
+}
+
+.betweenInputPrice:before {
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 1px;
+    margin: 0px 8px;
+    background-color: rgb(208, 208, 208);
+}
+
 @media screen and (max-width: 768px) {
+    .contentPro iframe {
+        width: 85%;
+        height: 300px;
+    }
+    .inputSearchPrice {
+        width: 110px;
+        text-align: center;
+    }
+    .betweenInputPrice:before {
+        width: 10px;
+        margin: 0 5px;
+    }
+    .labelPriceSearch {
+        display: none;
+    }
+    .inputSearchMobile {
+        width: 227px !important;
+    }
+    .boxDetailSearched {
+        width: 290px;
+        top: 1300px;
+        right: 16px;
+        position: absolute;
+        border: 1px solid gainsboro;
+    }
+    .searchBoxInPrice {
+        right: 230px;
+    }
+    .hiddenDiv {
+        display: none;
+    }
     .fakeHeader {
         width: 100%;
         height: 54px;
@@ -261,11 +387,21 @@ h2 {
         display: none;
     }
     .contentPro {
-        height: 550px;
+        height: 500px;
     }
     .contentPro h1 {
         font-weight: 700;
-        margin-top: 150px;
+        font-size: 30px;
+        top: 0px;
+    }
+    .contentPro p {
+        font-size: 14px;
+        top: 100px;
+    }
+    iframe {
+        width: 95%;
+        margin-left: 10px;
+        height: 350px;
     }
     .butBuy {
         margin-top: 30px;
@@ -299,6 +435,7 @@ h2 {
     }
     .boxFillterProduct {
         display: block;
+        position: relative;
     }
     .butBuyCarol {
         padding: 12px;
@@ -307,17 +444,53 @@ h2 {
 }
 
 @media screen and (max-width: 480px) {
+    .contentPro iframe {
+        margin: auto;
+        width: 90%;
+        margin-top: 50px;
+    }
+    .inputSearchPrice {
+        margin-top: 20px;
+        margin-left: 2px;
+        width: 138px;
+        text-align: center;
+    }
+    .betweenInputPrice:before {
+        width: 10px;
+        margin: 0 5px;
+        margin-top: 32px;
+    }
+    .inputSearchMobile {
+        width: 290px !important;
+    }
+    .boxDetailSearched {
+        width: 290px;
+        top: 1070px;
+        right: 15px;
+    }
+    .searchBoxInPrice {
+        top: 1070px;
+    }
     .fakeHeader {
         width: 100%;
         height: 48px;
     }
     .contentPro {
-        height: 300px;
+        height: 400px;
+    }
+    iframe {
+        width: 90%;
+        margin-top: 20px;
+        margin-left: 0;
+        height: 240px;
     }
     .contentPro h1 {
         font-weight: 600;
         font-size: 18px;
-        margin-top: 80px;
+        margin-top: -10px;
+    }
+    .carolselButton {
+        width: 10px;
     }
     .butBuy {
         margin-top: 20px;
@@ -335,7 +508,7 @@ h2 {
     }
     .imgSize {
         width: 100%;
-        height: 150px;
+        height: 130px;
     }
     .imgSizeBestSell {
         width: 100%;
@@ -356,5 +529,10 @@ h2 {
     .butBuyCarol {
         padding: 10px;
         font-size: 12px;
+    }
+    .outOfStock {
+        width: 90px;
+        font-size: 12px;
+        padding: 5px;
     }
 }

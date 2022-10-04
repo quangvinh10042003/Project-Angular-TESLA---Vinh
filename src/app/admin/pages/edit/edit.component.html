@@ -49,6 +49,7 @@
             <div class="col-lg-4">
                 <div class="formGroup">
                     <label for="">Product Image</label>
+                    <input type="file" (change)="changeImageProduct($event)">
                     <input type="text" class="formInput" formControlName="imgProduct" placeholder="Please enter a vehical image">
                     <div class="ProductImg" style="width: 80%">
                         <img class="card-img mt-2 imgProduct" src="{{form.imgProduct.value}}">
@@ -58,6 +59,7 @@
             <div class="col-lg-4">
                 <div class="formGroup">
                     <label for="">Interior Image</label>
+                    <input type="file" (change)="changeImageInterior($event)">
                     <input type="text" class="formInput" formControlName="interior" placeholder="Please enter interior of vehical">
                     <div style="width: 80%">
                         <img class="card-img mt-2 imgProduct" src="{{form.interior.value}}">
@@ -68,6 +70,7 @@
             <div class="col-lg-4">
                 <div class="formGroup">
                     <label for="">Video Auto Pilot</label>
+                    <input type="file" (change)="changeVideoAutoPilot($event)">
                     <input type="text" class="formInput mb-3" formControlName="videoAutoPilot" placeholder="Please enter a video autopilot">
                     <label for="">Auto Pilot Description</label>
                     <textarea class="formInput" cols="30" rows="3" formControlName="autoPilot"></textarea>
@@ -102,6 +105,7 @@
             <div class="col-lg-4" *ngFor="let item of allImg, let i = index">
                 <div class="formGroup">
                     <label for="">Slide {{i+1}}</label>
+                    <input type="file" (change)="changeImage($event,i)">
                     <input type="text" class="formInput" placeholder="Please enter a link image of slide" [(ngModel)]="item.img" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div style="width: 80%">
@@ -144,7 +148,6 @@
             <div class="formGroup formcheckbox mt-4">
                 <div class="row align-items-center">
                     <input class="checkbox" type="checkbox" formControlName="inHome"><span class="spanCheckbox">Home</span>
-                    <input class="checkbox" type="checkbox" formControlName="inBanner"><span class="spanCheckbox">Banner</span>
                     <input class="checkbox" type="checkbox" formControlName="inTopSeller"><span class="spanCheckbox">Best Seller</span>
                     <input class="checkbox" type="checkbox" formControlName="inStock"><span class="spanCheckbox">Stock</span>
                 </div>

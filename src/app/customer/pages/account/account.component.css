@@ -1,0 +1,74 @@
+.boxContainer {
+    padding-top: 100px;
+    min-height: 740px;
+}
+
+.menu {
+    padding-top: 100px;
+}
+
+.menu a {
+    border: none;
+    font-size: 20px;
+    color: rgb(100, 100, 100);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.active {
+    border-radius: 100px;
+    background-color: rgb(230, 229, 229);
+}
+
+.menu span i {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+}
+
+.menu span {
+    display: inline-block;
+    width: 60px;
+}
+
+.main {
+    width: 85%;
+    /* background-color: aqua; */
+}
+
+label {
+    font-size: 18px;
+    color: rgb(100, 100, 100);
+    font-weight: 600;
+}
+
+label:last-child {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+p {
+    font-size: 18px;
+    color: rgb(46, 46, 46);
+}
+
+@media screen and (max-width:768px) {
+    .boxContainer {
+        padding-top: 100px;
+        min-height: 600px;
+    }
+    h1 {
+        font-size: 26px;
+    }
+    p,
+    label {
+        font-size: 16px;
+    }
+    .menu {
+        display: none;
+    }
+    .main {
+        margin: auto;
+    }
+}

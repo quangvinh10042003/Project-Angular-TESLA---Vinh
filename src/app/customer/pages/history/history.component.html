@@ -1,0 +1,87 @@
+<div class="container-fluid boxContainer">
+    <div class="row">
+        <div class="col-lg-3 px-5">
+            <div class="list-group menu ml-4">
+                <a class="list-group-item list-group-item-action" routerLink="/account"><span><i class="fa-regular fa-user"></i></span>User Profile</a>
+                <a class="list-group-item list-group-item-action" routerLink="/accountSetting"><span><i class="fa-solid fa-user-pen" ></i></span>Profile Settings</a>
+                <a class="list-group-item list-group-item-action" routerLink="/history"><span><i class="fa-solid fa-shirt active"></i></span>Order History</a>
+                <a (click)="signout()" class="list-group-item list-group-item-action"><span><i class="fa-solid fa-right-from-bracket "></i></span>Sign Out</a>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="boxHistory">
+                <h1 class="pt-2">Order History</h1>
+                <ng-template #elseOrderList>
+                    <div class="boxAllCart">
+                        <h4 class="ml-lg-5 mt-5 ml-md-0 text-lg-left text-center">Your history is empty.</h4>
+                        <a class="btn btn-primary ml-lg-5 mt-3 ml-0 text-center goToShop d-block mx-auto" routerLink="/allshop" role="button">CONTINUE SHOPPING</a>
+                    </div>
+                </ng-template>
+                <div *ngIf="this.listHistory.length != 0; else elseOrderList">
+                    <a class="btn buttonRemoveAll mt-5" (click)="removeAllHistory()" role="button">Remove All Orders</a>
+                    <div class="itemGroup maxHeight position-relative mb-5 mt-3" id="itemGroup{{i}}" *ngFor="let item of listHistory, let i=index">
+                        <div class="row infoOrder">
+                            <div class="col-4">
+                                <p><span class="fontWeight600">Date</span>: {{item.date}}</p>
+                            </div>
+                            <div class="col-4">
+                                <p class="text-center"><span class="fontWeight600">Subtotal</span>: ${{item.subtotal}}</p>
+                            </div>
+                            <div class="col-4">
+                                <p class="text-right remove" (click)="removeItem(i)">Remove</p>
+                            </div>
+                        </div>
+                        <div class="bill">
+                            <div class="cardItem" *ngFor="let product of item.cart">
+                                <div class="row pb-4">
+                                    <div class="col-lg-3 col-md-3 col-4">
+                                        <img src="{{product.img}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-8">
+                                        <p class="name" *ngIf="product.category_id == 1; else elseName" routerLink="/detail/{{product.id}}">{{product.name}}</p>
+                                        <ng-template #elseName>
+                                            <p class="name" routerLink="/detailAccessory/{{product.id}}">{{product.name}}</p>
+                                        </ng-template>
+                                        <span>{{category[i]}}</span>
+                                        <p class="price d-lg-none d-md-none d-block"><span class="fontWeight600">Price:</span> ${{product.price}}</p>
+                                        <div class="d-lg-block d-md-block d-none">
+                                            <div *ngIf="product.category_id == 1; else elseBlock">
+                                                <div class="row align-items-center ml-0 position-relative">
+                                                    <span class="span mr-2">Color: </span>
+                                                    <div class="paint border" [ngStyle]="{'background-color':product.property}"></div>
+                                                </div>
+                                            </div>
+                                            <ng-template #elseBlock>
+                                                <div class="row align-items-center ml-0 position-relative">
+                                                    <span class="span mr-2">Quantity:  </span>
+                                                    <div class="boxQuantity row align-items-center">
+                                                        <span class="quantityInp" id="quantityInp" type="text">{{product.quantity}}</span>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                            <p><span class="fontWeight600">Consignee</span>: {{item.consignee}}</p>
+                                            <p><span class="fontWeight600">Address</span>: {{item.address}}</p>
+                                            <p><span class="fontWeight600">Telephone Number</span>: {{item.telephoneNumber}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-12 d-none d-lg-block d-md-block">
+                                        <div class="position-relative">
+                                            <p class="price text-right"><span class="fontWeight600">Price:</span> ${{product.price}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mt-2 d-lg-none d-md-none d-block">
+                                        <p><span class="fontWeight600">Consignee</span>: {{item.consignee}}</p>
+                                        <p><span class="fontWeight600">Address</span>: {{item.address}}</p>
+                                        <p><span class="fontWeight600">Telephone Number</span>: {{item.telephoneNumber}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="position-absolute spanMoreDetail" (click)="showMoreOrder(i)" id="showMoreOrder{{i}}" *ngIf="item.cart.length>1"><i class="fa-solid fa-angle-down" id="icon{{i}}"></i> {{item.cart.length-1}} more order</p>
+                        <p class="position-absolute d-none spanMoreDetail" (click)="closeMoreOrder(i)" id="closeMoreOrder{{i}}" *ngIf="item.cart.length>1"><i class="fa-solid fa-angle-up" id="icon{{i}}"></i> Press down</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

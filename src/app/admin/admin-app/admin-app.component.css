@@ -1,5 +1,81 @@
 .menu {
     border-right: 1px solid rgb(208, 208, 208);
+    border-bottom: 1px solid rgb(208, 208, 208);
     background-color: rgb(242, 242, 242);
-    min-height: 500px;
+    min-height: 900px;
+}
+
+.toggle {
+    width: 100%;
+    margin: auto;
+    height: 60px;
+    position: fixed;
+    z-index: 999;
+    top: 0px;
+    background-color: white;
+    padding: 5px;
+}
+
+.toggBut {
+    float: right;
+    margin-right: 20px;
+    font-size: 24px;
+    background: #fff;
+}
+
+.boxImg {
+    width: 150px;
+    margin-left: 20px;
+}
+
+.menuMobile {
+    padding: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 320px;
+    background-color: #fff;
+    height: 450px;
+    border-right: 1px solid rgb(207, 207, 207);
+    float: right;
+    z-index: 990;
+}
+
+#closeMobileMenu {
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 20px;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 100px;
+    position: absolute;
+    z-index: 999;
+    top: 15px;
+    right: 50px;
+}
+
+#closeMobileMenu:hover {
+    background-color: rgb(218, 217, 217);
+}
+
+.toggle {
+    display: none;
+}
+
+.modalMobile {
+    top: 0;
+    right: 0;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    background: rgba(170, 170, 170, 0.282);
+}
+
+@media screen and (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+    .toggle {
+        display: block;
+    }
 }

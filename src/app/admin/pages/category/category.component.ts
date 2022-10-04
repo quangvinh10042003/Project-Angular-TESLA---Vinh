@@ -23,6 +23,7 @@ export class CategoryComponent implements OnInit {
   constructor(private category: CategoryService) { }
 
   ngOnInit(): void {
+    document.documentElement.scrollTop = 0;
     this.getAll();
   }
   get form():any{

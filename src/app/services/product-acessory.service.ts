@@ -7,7 +7,6 @@ const urlAPIAcessory = "http://localhost:3000/productAccessory"
   providedIn: 'root'
 })
 export class ProductAcessoryService {
-
   constructor(private http: HttpClient) { }
   getAll():Observable<ProductAccessory[]>{
     return this.http.get<ProductAccessory[]>(urlAPIAcessory);
@@ -21,7 +20,7 @@ export class ProductAcessoryService {
   deleteItem(id:number){
     return this.http.delete(`${urlAPIAcessory}/${id}`);
   }
-  addItem(data:ProductAccessory){
-    return this.http.post(urlAPIAcessory,data);
+  addItem(data:any){
+    return this.http.post(`${urlAPIAcessory}`,data);
   }
 }

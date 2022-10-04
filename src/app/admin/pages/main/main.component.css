@@ -1,7 +1,11 @@
 table {
     width: 100%;
     margin: auto;
-    padding: 0px 100px;
+    padding: 0px;
+}
+
+td {
+    font-size: 14px;
 }
 
 .thLineHeight {

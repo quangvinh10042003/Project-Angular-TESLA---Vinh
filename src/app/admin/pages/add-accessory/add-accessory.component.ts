@@ -10,9 +10,9 @@ import Swal from 'sweetalert2'
   styleUrls: ['./add-accessory.component.css']
 })
 export class AddAccessoryComponent implements OnInit {
-  categoryList:any;
-  quantitySlide:number = 1;
-  allImg:any = [];
+  categoryList: any;
+  quantitySlide: number = 1;
+  allImg: any = [];
 
   formGroup = new FormGroup({
     name: new FormControl(''),
@@ -22,33 +22,29 @@ export class AddAccessoryComponent implements OnInit {
     imgProduct: new FormControl(''),
     allImg: new FormControl(''),
     inHome: new FormControl(false),
-    inBanner: new FormControl(false),
     inTopSeller: new FormControl(false),
     inStock: new FormControl(true)
   })
   constructor(private accessorySer: ProductAcessoryService, private router: Router, private category: CategoryService) { }
 
   ngOnInit(): void {
-    this.category.getAll().subscribe(data=>{
+    document.documentElement.scrollTop = 0;
+    this.category.getAll().subscribe(data => {
       this.categoryList = data;
     })
-  }
-  
-  get form():any{
-    return this.formGroup.controls;
   }
   enterSlider(){
     this.allImg = [];
     let setSlide = document.getElementById('setSlide') as HTMLDivElement | null;
-    for(let i=1; i<=this.quantitySlide; i++){
+    for (let i = 1; i <= this.quantitySlide; i++) {
       let id = i;
-      let img:any ='';
-      this.allImg.push({id,img});
+      let img: any = '';
+      this.allImg.push({ id, img });
     }
     setSlide?.classList.remove('d-none');
   }
-  setSlide(){
-    this.form.allImg.value = this.allImg;   
+  setSlide() {
+    this.form2.allImg.value = this.allImg;
     Swal.fire({
       position: 'top-end',
       icon: 'success',
@@ -57,9 +53,28 @@ export class AddAccessoryComponent implements OnInit {
       timer: 1000
     })
   }
-  submitProduct(){
+  get form2(): any {
+    return this.formGroup.controls;
+  }
+  changeImage(event:any,i:number){
+    const reader = new FileReader();
+    const file = event.target.files;
+    reader.readAsDataURL(file[0]);
+    reader.onload = ()=>{
+      this.allImg[i].img = reader.result;
+    }
+  }
+  changeImageProduct(event:any){
+    const reader = new FileReader();
+    const file = event.target.files;
+    reader.readAsDataURL(file[0]);
+    reader.onload = ()=>{
+      this.form2.imgProduct.value = reader.result;
+    }
+  }
+  submitProduct() {
     Swal.fire({
-      title: 'Do you want to save the new product?',
+      title: 'Do you want to save the new vehical?',
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Save',
@@ -68,7 +83,7 @@ export class AddAccessoryComponent implements OnInit {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Swal.fire('Saved!', '', 'success');
-        this.accessorySer.addItem(this.formGroup.value).subscribe(()=>{   
+        this.accessorySer.addItem(this.formGroup.value).subscribe(() => {
           this.router.navigate(['admin']);
         })
       } else if (result.isDenied) {

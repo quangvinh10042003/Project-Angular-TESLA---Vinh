@@ -1,3 +1,4 @@
+import { AccountService } from './../../../services/account.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tesla-about.component.css']
 })
 export class TeslaAboutComponent implements OnInit {
-
-  constructor() { }
+  getCart: number = 0;
+  accountSignIn: any;
+  constructor(private accountSer: AccountService) { }
 
   ngOnInit(): void {
+    document.documentElement.scrollTop = 0;
+    let openMenuInAccountPages = document.getElementById('openMenuInAccountPages') as HTMLDivElement | null;
+    openMenuInAccountPages?.classList.add('d-none');
+    this.accountSignIn = sessionStorage.getItem('accountSignIn');
+    this.accountSignIn = JSON.parse(this.accountSignIn);
   }
-
 }

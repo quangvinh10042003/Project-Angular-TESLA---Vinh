@@ -12,6 +12,7 @@
 
 .header-bg {
     width: 100%;
+    position: fixed;
     background: rgb(255, 255, 255);
 }
 
@@ -95,7 +96,7 @@ li a {
 .listMobile {
     background: #fff;
     width: 320px;
-    height: 500px;
+    height: 700px;
     float: right;
 }
 
@@ -103,7 +104,38 @@ li a {
     font-weight: 500;
 }
 
+.h6account {
+    margin-top: 20px;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.cardNumber {
+    font-weight: 600;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    background-color: rgba(4, 0, 255, 0.493);
+    color: #fff;
+    line-height: 18px;
+    border-radius: 100px;
+    position: fixed;
+    top: 12px;
+    right: 132px;
+    z-index: 999;
+    font-size: 13px;
+}
+
 @media screen and (max-width: 768px) {
+    .cardNumber {
+        display: none;
+    }
+    #cartNum {
+        top: 22px;
+        right: 168px;
+        background-color: rgb(0, 115, 255);
+    }
     .shop {
         display: block;
         padding-left: 10px;
@@ -154,7 +186,7 @@ li a {
     .accountAndCart {
         width: 80px;
         margin: auto;
-        margin-top: 60px;
+        margin-top: 30px;
     }
     .accountAndCart div i {
         width: 40px;

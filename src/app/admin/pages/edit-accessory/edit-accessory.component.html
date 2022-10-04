@@ -40,6 +40,7 @@
                 <div class="col-lg-6">
                     <div class="formGroup">
                         <label for="">Image Product</label>
+                        <input type="file" (change)="changeImageProduct($event)">
                         <input type="text" formControlName="imgProduct" class="formInput" placeholder="Please enter a price">
                     </div>
                     <div class="formGroup">
@@ -63,6 +64,7 @@
                 <div class="col-lg-4" *ngFor="let item of allImg, let i = index">
                     <div class="formGroup">
                         <label for="">Slide {{i+1}}</label>
+                        <input type="file" (change)="changeImage($event,i)">
                         <input type="text" class="formInput" placeholder="Please enter a link image of slide" [(ngModel)]="item.img" [ngModelOptions]="{standalone: true}">
                     </div>
                     <div style="width: 80%">
@@ -71,13 +73,13 @@
                 </div>
                 <div class="col-lg-12 mt-4 d-none" id="setSlide">
                     <a class="btn btn-dark text-light" role="button" (click)="setSlide()">Set Slide</a>
+                    <a class="btn btn-primary text-light ml-2" role="button" (click)="showSlider()"><i class="fa-solid fa-arrow-rotate-left mr-2"></i> Return</a>
                 </div>
                 <div class="col-lg-12 mt-4">
                     <h4>Display</h4>
                     <div class="formGroup formcheckbox mt-4">
                         <div class="row align-items-center">
                             <input class="checkbox" formControlName="inHome" type="checkbox"><span class="spanCheckbox">Home</span>
-                            <input class="checkbox" formControlName="inBanner" type="checkbox"><span class="spanCheckbox">Banner</span>
                             <input class="checkbox" formControlName="inTopSeller" type="checkbox"><span class="spanCheckbox">Best Seller</span>
                             <input class="checkbox" formControlName="inStock" type="checkbox"><span class="spanCheckbox">Stock</span>
                         </div>

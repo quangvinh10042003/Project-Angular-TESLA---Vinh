@@ -96,12 +96,18 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
+    .main {
+        padding-top: 60px;
+    }
     .boxImg {
         width: 100%;
         margin: auto;
     }
     .boxImage {
         height: 220px;
+    }
+    .imgSlide {
+        max-height: 500px;
     }
 }
 

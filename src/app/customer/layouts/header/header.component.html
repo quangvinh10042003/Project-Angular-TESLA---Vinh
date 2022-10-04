@@ -8,24 +8,37 @@
                 <div class="logo" routerLink="/">
                     <img class="card-img" src="https://www.freepnglogos.com/uploads/tesla-logo-png-20.png" alt="">
                 </div>
-                <div class="shop" routerLink="/allshop">
+                <div class="shop" (click)="scrollTopShop()">
                     Shop
                 </div>
             </div>
         </div>
         <div class="col-lg-6 col-md-1 col-1">
             <ul>
-                <li><a class="listNAV" routerLink="/allshop">Shop</a></li>
+                <li><a class="listNAV" (click)="scrollTopShop()">Shop</a></li>
                 <li><a class="listNAV" routerLink="/delivery">Delivery</a></li>
                 <li><a class="listNAV" routerLink="/teslaAbout">About</a></li>
             </ul>
         </div>
         <div class="col-lg-3 col-md-8 col-5 mobileRightHeader">
             <div class="row float-right">
-                <div class="cart fontWeight500">
+                <div class="cart fontWeight500 position-relative" *ngIf="checkStr || isUserLoggedIn; else elseCart" routerLink="cart">
                     Cart
+                    <div class="cardNumber d-none" id="cardNumber" *ngIf="(!checkStr && !isUserLoggedIn) || getCart==0; else elseCartNumber">
+                        {{getCart}}
+                    </div>
+                    <ng-template #elseCartNumber>
+                        <div class="cardNumber" id="cardNumber">
+                            {{getCart}}
+                        </div>
+                    </ng-template>
                 </div>
-                <div class="ml-3 accout fontWeight500" routerLink="account" id="accountDiv" *ngIf="checkStr; else elseBlock">
+                <ng-template #elseCart>
+                    <div class="cart fontWeight500" (click)="navigatorToSignIn()">
+                        Cart
+                    </div>
+                </ng-template>
+                <div class="ml-3 accout fontWeight500" routerLink="account" id="accountDiv" *ngIf="checkStr || isUserLoggedIn; else elseBlock">
                     Account
                 </div>
                 <ng-template #elseBlock>
@@ -45,11 +58,32 @@
             <div id="closeMobileMenu" (click)="closeMenuMobile()"><i class="fa-solid fa-x"></i></div>
             <div class="accountAndCart">
                 <div class="row">
-                    <div class="cartMobile">
+                    <div class="cartMobile position-relative" routerLink="cart" *ngIf="checkStr || isUserLoggedIn; else elseBlockCart">
                         <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="cardNumber d-none" *ngIf="(!checkStr && !isUserLoggedIn) || getCart<=0; else elseCartNumber2">
+                            {{getCart}}
+                        </div>
+                        <ng-template #elseCartNumber2>
+                            <div class="cardNumber" id="cartNum">
+                                {{getCart}}
+                            </div>
+                        </ng-template>
                     </div>
-                    <div class="ml-3 accoutMobile" routerLink="account" *ngIf="checkStr; else elseBlock1">
-                        <i class="fa-solid fa-user"></i>
+                    <ng-template #elseBlockCart>
+                        <div class="cartMobile position-relative" (click)="navigatorToSignIn()">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <div class="cardNumber d-none" id="cartNum" *ngIf="!checkStr || !isUserLoggedIn || getCart<=0; else elseCartNumber2">
+                                {{getCart}}
+                            </div>
+                            <ng-template #elseCartNumber2>
+                                <div class="cardNumber" id="cartNum">
+                                    {{getCart}}
+                                </div>
+                            </ng-template>
+                        </div>
+                    </ng-template>
+                    <div class="ml-3 accoutMobile" routerLink="account" *ngIf="checkStr || isUserLoggedIn; else elseBlock1">
+                        <i class="fa-solid fa-id-card"></i>
                     </div>
                     <ng-template #elseBlock1>
                         <div class="ml-3 accoutMobile" routerLink="signin">
@@ -60,10 +94,17 @@
 
             </div>
             <div class="list-group listMenu">
-                <a href="#" class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/">Home</a>
-                <a href="#" class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/allshop">Shop</a>
-                <a href="#" class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/delivery">Delivery</a>
-                <a href="#" class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/teslaAbout">About</a>
+                <a class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/">Home</a>
+                <a class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/allshop">Shop</a>
+                <a class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/delivery">Delivery</a>
+                <a class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/teslaAbout">About</a>
+                <div class="d-none" id="openMenuInAccountPages">
+                    <h6 class="text-center h6account">Account</h6>
+                    <a class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/account">User Profile</a>
+                    <a class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/accountSetting">Profile Setting</a>
+                    <a class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobile()" routerLink="/history">Order History</a>
+                </div>
+                <a class="list-group-item list-group-item-action fontWeight500" (click)="closeMenuMobileAndSignOut()"><span><i class="fa-solid fa-right-from-bracket mr-2"></i></span>Sign Out</a>
             </div>
         </div>
     </div>

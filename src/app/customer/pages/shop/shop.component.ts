@@ -1,3 +1,4 @@
+import { AccountService } from './../../../services/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from './../../../services/category.service';
 import { VehicalService } from './../../../services/vehical.service';
@@ -10,50 +11,57 @@ import { ProductAcessoryService } from 'src/app/services/product-acessory.servic
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  bannerList: any = [];
+  getCart: number = 0;
   slideTopSeller: any = [];
   allProduct: any = [];
   categoryList: any;
-  keyword: string = '';
+  keyword: string = "";
+  minPrice: any;
+  maxPrice: any;
+  accountSignIn: any;
   constructor(private vehicalService: VehicalService, private accessoryService: ProductAcessoryService, private categoryService: CategoryService, private router: Router, private actRout: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // in ra banner 
-    this.vehicalService.getAll().subscribe(data => {
-      data.map(item => {
-        if (item.inBanner) {
-          this.bannerList.push(item);
-        } else { }
-      })
+    let openMenuInAccountPages = document.getElementById('openMenuInAccountPages') as HTMLDivElement | null;
+    openMenuInAccountPages?.classList.add('d-none');
+    this.accountSignIn = sessionStorage.getItem('accountSignIn');
+    this.accountSignIn = JSON.parse(this.accountSignIn);
+    
+    document.addEventListener('click', function handleClickOutsideBox(event: any) {
+      let boxDetailSearched = document.getElementById('boxDetailSearched') as HTMLDivElement | null;
+      if (!boxDetailSearched?.contains(event.target)) {
+        boxDetailSearched?.classList.add('d-none');
+
+      }
     });
-    this.accessoryService.getAll().subscribe(data => {
-      data.map(item => {
-        if (item.inBanner) {
-          this.bannerList.push(item);
-        } else { }
-      })
-    });
+
     // in ra best seller
-    this.vehicalService.getAll().subscribe(data => {
-      data.map(item => {
-        if (item.inTopSeller) {
-          this.slideTopSeller.push(item);
-        } else { }
-      })
-    });
-    this.accessoryService.getAll().subscribe(data => {
-      data.map(item => {
-        if (item.inTopSeller) {
-          this.slideTopSeller.push(item);
-        } else { }
-      })
-    });
+    this.showBestSeller();
     // in ra category
     this.categoryService.getAll().subscribe(data => {
       this.categoryList = data;
     })
-
+    this.showByCategory();
     // in ra các sản phẩm theo category
+
+  }
+  showBestSeller() {
+    this.vehicalService.getAll().subscribe(data => {
+      data.map(item => {
+        if (item.inTopSeller) {
+          this.slideTopSeller.push(item);
+        } else { }
+      })
+    });
+    this.accessoryService.getAll().subscribe(data => {
+      data.map(item => {
+        if (item.inTopSeller) {
+          this.slideTopSeller.push(item);
+        } else { }
+      })
+    });
+  }
+  showByCategory() {
     let id: any = this.actRout.snapshot.params['id'];
     this.actRout.paramMap.subscribe(data => {
       this.allProduct = [];
@@ -61,27 +69,27 @@ export class ShopComponent implements OnInit {
       if (id) {
         this.vehicalService.getAll().subscribe(data => {
           data.map(item => {
-            if(id == item.category_id){
+            if (id == item.category_id) {
               this.allProduct.push(item);
-            }else{}
-            
+            } else { }
+
           })
         })
         this.accessoryService.getAll().subscribe(data => {
           data.map(item => {
-            if(id == item.category_id){
+            if (id == item.category_id) {
               this.allProduct.push(item);
-            }else{}
+            } else { }
           })
         })
       } else {
         this.vehicalService.getAll().subscribe(data => {
-          data.map(item =>{
+          data.map(item => {
             this.allProduct.push(item);
           })
         })
         this.accessoryService.getAll().subscribe(data => {
-          data.map(item =>{
+          data.map(item => {
             this.allProduct.push(item);
           })
         })
@@ -95,7 +103,7 @@ export class ShopComponent implements OnInit {
     pullDrag: true,
     dots: true,
     navSpeed: 700,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 1000,
     autoplayTimeout: 3000,
     responsive: {
@@ -124,19 +132,30 @@ export class ShopComponent implements OnInit {
         items: 3
       }
     },
-    nav: true,
+    nav: false,
   }
   searchByCategory(id: number) {
     this.scroll();
     this.router.navigate([`/shop/${id}`]);
   }
-  scroll(){
-    document.documentElement.scrollTo(0,1200);
+  scroll() {
+    document.documentElement.scrollTo(0, 1200);
   }
-  navigateToDetailAccessory(id:number){
-    this.router.navigate([`/detailAccessory/${id}`]);
+  navigateToProduct(id: number, categoryID: number) {
+    if (categoryID == 1) {
+      this.router.navigate([`/detail/${id}`]);
+    } else {
+      this.router.navigate([`/detailAccessory/${id}`]);
+    }
   }
-  navigateToDetail(id:number){
-    this.router.navigate([`/detail/${id}`]);
+  showSearchBox() {
+    let box = document.getElementById('boxDetailSearched') as HTMLDivElement | null;
+    box?.classList.remove('d-none');
+    box?.classList.remove('searchBoxInPrice');
+  }
+  showSearchPriceBox() {
+    let box = document.getElementById('boxDetailSearched') as HTMLDivElement | null;
+    box?.classList.remove('d-none');
+    box?.classList.add('searchBoxInPrice');
   }
 }
