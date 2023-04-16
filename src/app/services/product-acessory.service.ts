@@ -14,13 +14,13 @@ export class ProductAcessoryService {
   getItem(id:number):Observable<ProductAccessory>{
     return this.http.get<ProductAccessory>(`${urlAPIAcessory}/${id}`);
   }
-  editItem(id:number, data:ProductAccessory){
+  editItem(id:number, data:ProductAccessory):Observable<any>{
     return this.http.put(`${urlAPIAcessory}/${id}`,data);
   }
-  deleteItem(id:number){
+  deleteItem(id:number):Observable<any>{
     return this.http.delete(`${urlAPIAcessory}/${id}`);
   }
-  addItem(data:any){
+  addItem(data:any):Observable<any>{
     return this.http.post(`${urlAPIAcessory}`,data);
   }
 }

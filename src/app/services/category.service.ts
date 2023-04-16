@@ -15,13 +15,13 @@ export class CategoryService {
   getItem(id:number):Observable<Category>{
     return this.http.get<Category>(`${urlAPICategory}/${id}`);
   }
-  editItem(id:number, data:Category){
+  editItem(id:number, data:Category):Observable<any>{
     return this.http.put(`${urlAPICategory}/${id}`,data);
   }
-  deleteItem(id:number){
+  deleteItem(id:number):Observable<any>{
     return this.http.delete(`${urlAPICategory}/${id}`);
   }
-  addItem(data:Category){
+  addItem(data:Category):Observable<any>{
     return this.http.post(urlAPICategory,data);
   }
 }

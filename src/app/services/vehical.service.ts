@@ -15,13 +15,13 @@ export class VehicalService {
   getItem(id:number):Observable<Vehical>{
     return this.http.get<Vehical>(`${urlAPIVehical}/${id}`);
   }
-  editItem(id:number, data:Vehical){
+  editItem(id:number, data:Vehical):Observable<any>{
     return this.http.put(`${urlAPIVehical}/${id}`,data);
   }
-  deleteItem(id:number){
+  deleteItem(id:number):Observable<any>{
     return this.http.delete(`${urlAPIVehical}/${id}`);
   }
-  addItem(data:Vehical){
+  addItem(data:Vehical):Observable<any>{
     return this.http.post(`${urlAPIVehical}`,data)
   }
 }
