@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ProductAccessory } from '../models/product-accessory';
-const urlAPIAcessory = "http://localhost:3000/productAccessory"
+const urlAPIAcessory = "https://json-server-tesla.vercel.app/productAccessory"
 @Injectable({
   providedIn: 'root'
 })

@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Category } from '../models/category';
-const urlAPICategory = "http://localhost:3000/category";
+const urlAPICategory = "https://json-server-tesla.vercel.app/category";
 @Injectable({
   providedIn: 'root'
 })
